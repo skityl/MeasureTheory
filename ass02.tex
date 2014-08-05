@@ -57,11 +57,28 @@ Let $\mu^*$ be the outer measure on $2^X$ defined by $\gamma$.
     are in $\mathcal{M}(\mu^*)$. We do not need to show that $\{1,2,3\} \in \mathcal{M}(\mu^*)$
     since $\{1,2,3\} = \{1\}\cup\{2,3\}$.
     
-    Let $A \subset X$. Then
+    Let $B = \{\{1\},\{2,3\},\{4,5\}\}$. We must check that for all $A \subset X$ and $E \in B$,
     \begin{equation*}
-        \mu^*(A) = \mu^*(A\cap \{1\}) + \mu^*(A\setminus\{1\})
+        \mu^*(A) = \mu^*(A\cap E) + \mu^*(A\setminus E).
     \end{equation*}
-    since if $1 \in A$, $\mu^*(A\cap\{1\}) = 1$ and $\mu^*(A\setminus\{1\})$,
+    
+    It is not necessary to check this for all $A \subset X$, since 
+    
+    Let $A \subset X$. Then we must check that
+    \begin{equation*}
+        \mu^*(A) = \mu^*(A\cap \{1\}) + \mu^*(A\setminus\{1\}).
+    \end{equation*}
+    We need only consider the case where $1 \in \mathcal{A}$ since otherwise the equation is trivially true.
+    Hence we must prove that
+    \begin{equation*}
+        \mu^*(A) = 1 + \mu^*(A\setminus\{1\}).
+    \end{equation*}
+    
+    See that
+    \begin{equation*}
+        \mu^*(A\setminus\{1\}) = 
+    \end{equation*}
+
     
 \end{proof} 
 
@@ -149,13 +166,13 @@ We now consider the Borel $\sigma$-algebra $\Bor = \sigma(\mathcal{T})$.
     
     Now let $a,b \in \Rl$, and consider the sequence of sets $\{[a+1/n,b-1/n]\}_{n=1}^\infty \subset \mathcal{E}_2$. Hence $\bigcup_{n=1}^\infty [a-1/n,b+1/n] = (a,b) \in \sigma(\mathcal{E_2})$.
     
-    Hence $\mathcal{E}_1 \subset \sigma{\mathcal{E}_2)$, so $\sigma(\mathcal{E}_1) \subseteq \sigma(\mathcal{E}_2)$.
+    Hence $\mathcal{E}_1 \subset \sigma(\mathcal{E}_2)$, so $\sigma(\mathcal{E}_1) \subseteq \sigma(\mathcal{E}_2)$.
     
     Similarly, $[a,b] = \bigcap_{n=1}^\infty (a-1/n,b+1/n) \in \sigma(\mathcal{E}_1)$. 
-    Thus $\mathcal{E}_2 \subseteq \sigma(\mathcal{E}_1)$. Hence $\sigma(\mathcal{E}_1) = \sigma(\mathcal{E}_2}$.
+    Thus $\mathcal{E}_2 \subseteq \sigma(\mathcal{E}_1)$. Hence $\sigma(\mathcal{E}_1) = \sigma(\mathcal{E}_2)$.
     
     Similarly, by considering the sequences of sets $(a,b+1/n]$, $(a,b-1/n]$, $[a-1/n,b)$
-    and $[a+1/n,b)$ we can show that $\sigma(\mathcal{E}_3) = \sigma(\mathcal{E}_4} = \sigma(\mathcal{E}_1) = \Bor$.
+    and $[a+1/n,b)$ we can show that $\sigma(\mathcal{E}_3) = \sigma(\mathcal{E}_4) = \sigma(\mathcal{E}_1) = \Bor$.
     
     
     Finally, if $a < b \in \Rl$, and $x \in (a,b)$ there exist rational
@@ -176,7 +193,7 @@ which is closed under countable intersections and unions.
 This is well defined since $2^\Rl$ is a family of sets containing $\mathcal{T}$
 which is closed under countable intersections and unions. Hence the expression
 \begin{equation*}
-    \mathcal{M} = \bigcap \mathcal{A}\subset 2^\Rl \mathcal{A}
+    \mathcal{M} = \bigcap_{\mathcal{A}\subset 2^\Rl} \mathcal{A}
 \end{equation*}
 as $\mathcal{A}$ varies over all subsets of $2^\Rl$ containing $\mathcal{T}$
 closed under countable unions and intersections is well defined since the right hand
@@ -186,15 +203,72 @@ side is the intersection of nonempty family of sets.
     Any closed set in $\Rl$ is a countable intersection of open sets.
 \end{lemma} 
 \begin{proof}
-    Let $F \subset \Rl$ be any subset. Define
+    We use the fact that any open set in $\Rl$ is a countable
+    union of intervals. Let $U \in \mathcal{T}$ be open. Then
     \begin{equation*}
-        F_\varepsilon = \bigcup_{x \in F} (x-\varepsilon, x+\varepsilon) \in \mathcal{T}.
+        U = \bigcup_{i=1}^\infty (a_i,b_i)
     \end{equation*}
-    Let $F_0 = \bigcap_{n=1}^\infty F_{1/n}.
-    Suppose $F \subseteq V$, where $V$ is closed.
+    for some choice of sequences of real numbers $\{a_i\},\{b_i\}$. 
+    Then
+    \begin{equation*}
+        U^c = \bigcap_{i=1}^\infty ((-\infty,a_i]\cup[b_i,\infty)).
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        U^c = \bigcap_{i=1}^\infty \bigcap_{n=1}^\infty (-\infty,a_i+1/n)\cup(b_i-1/n,\infty).
+    \end{equation*}
+    Hence any closed set is a countable intersection of open sets.    
 \end{proof}
-
-
+\begin{lemma}
+    $\mathcal{M}$ contains all closed sets.
+\end{lemma}
+\begin{proof}
+    Since $\mathcal{M}$ contains all open sets, and $\mathcal{M}$ is closed
+    under countable intersection, $\mathcal{M}$ contains all closed sets.    
+\end{proof}
+Now let $\mathcal{A} = \{B \in \mathcal{M}\;:\;B^c \in \mathcal{M}\}$.
+\begin{lemma}
+    $\mathcal{A}$ is a $\sigma$-algebra.
+\end{lemma}
+\begin{proof}
+    Since $\mathcal{M}$ contains $\emptyset$ and $X$, $\mathcal{A}$ contains
+    $\emptyset$ and $\mathcal{X}$.
+    
+    Suppose $B \in \mathcal{A}$. Then $B \in \mathcal{M}$. Hence $B^c \in \mathcal{M}$
+    since $(B^{c})^c = B \in \mathcal{M}$.
+    
+    Now let $\{B_i\}_{i=1}^\infty \subset \mathcal{A}$ be a countable collection of elements
+    of $\mathcal{A}$.
+    
+    Then
+    \begin{equation*}
+        \left(\bigcup_{i=1}^\infty B_i\right)^c = \bigcap B_i^c
+    \end{equation*}
+    But $B_i^c \in \mathcal{M}$ for each $i$, and $\mathcal{M}$
+    is closed under countable intersections, hence 
+    \begin{equation*}
+        \left(\bigcup_{i=1}^\infty B_i\right)^c \in \mathcal{M}
+    \end{equation*}
+    so $\mathcal{A}$ is closed under countable union.
+    
+    Hence $\mathcal{A}$ is a $\sigma$-algebra.
+    
+\end{proof}
+\begin{theorem}
+    $\sigma(\mathcal{T}) = \mathcal{M}$
+\end{theorem}
+\begin{proof}
+    We have proved that $\mathcal{A}$ contains all open sets,
+    since all closed sets are in $\mathcal{M}$.
+    
+    Hence $\mathcal{T} \subseteq \mathcal{A}$. Since $\mathcal{A}$
+    is a $\sigma$-algebra, we conclude that $\sigma(\mathcal{T}) \subseteq \mathcal{A}$. 
+    Hence $\sigma(\mathcal{T}) \subseteq \mathcal{M}$.
+    
+    But $\sigma(\mathcal{T})$ is a family of subsets containing $\mathcal{T}$
+    which is closed under countable intersections and unions. Since $\mathcal{M}$
+    is minimal with this property, we conclude that $\sigma(\mathcal{T}) = \mathcal{M}$.
+\end{proof}
 
 
 \end{document}
