@@ -1,0 +1,166 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Homework 3}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}(\Rl)}
+\newcommand{\sdiff}{\bigtriangleup}
+
+\unswtitle{}
+
+\section*{Question 1}
+In this question we work over $\Rl^d$, with $d > 1$. $\lambda_d$ 
+is the Lebesgue measure on $\Rl^d$.
+\begin{theorem}
+    Let $\ell \subset \Rl^d$ be a line. Then $\lambda_d(\ell) = 0$.
+\end{theorem}   
+\begin{proof}
+    Since $\ell$ is closed, $\ell$ is Borel and hence Lebesgue measurable.
+    
+    Since $\lambda_d$ is translation invariant, we may assume that 
+    $0 \in \ell$. Let $v \in \ell$ with $v \neq 0$. Consider half open line segment,
+    \begin{equation*}
+        S = \{tv\;:\;t \in [0,1)\;\}.
+    \end{equation*}
+    $S$ is Borel, hence measurable. Suppose $v = (v_1,v_2,\ldots,v_d)$, and define the box,
+    \begin{equation*}
+        B_n = \prod_{k=1}^d [0,\frac{v_k}{2^{n}}).
+    \end{equation*}
+    If $t \in [0,1)$ then for any $n > 0$ there exists
+    an integer $k$ such that $\frac{k}{2^n} \leq v \leq \frac{k+1}{2^n}$.
+    
+    Hence,
+    \begin{equation*}
+        S \subset \bigcup_{k=0}^{2^n-1} (B_n+\frac{k}{2^{n}}v).
+    \end{equation*}
+    So by translation invariance,
+    \begin{equation*}
+        \lambda_d(S) \leq 2^n \lambda_d(B_n).
+    \end{equation*}
+    But by definition, $\lambda_d(B_n) = \frac{1}{2^{nd}}\lambda_d(B_0)$.
+    Hence, 
+    \begin{equation*}
+        \lambda_d(S) \leq 2^{n(1-d)}\lambda_d(B_0).
+    \end{equation*}
+    Since $d > 1$, $n$ is arbitrary and $\lambda_d(B_0)$ is finite, we
+    conclude that $\lambda_d(S) = 0$.
+    
+    Now since
+    \begin{equation*}
+        \ell = \bigcup_{n\in \mathbb{Z}} (nv+S)
+    \end{equation*}
+    by translation invariance we conclude that $\lambda_d(\ell) = 0$.    
+\end{proof}
+
+\section*{Question 2}
+
+\subsection*{(a)}
+\begin{lemma}
+    
+\end{lemma}
+
+\subsection*{(b)}
+Now we define
+\begin{equation*}
+    \mathcal{G} := \{\;B \in \mathcal{F}\;:\;\forall\varepsilon > 0\;\exists B_\varepsilon \in \mathcal{A}\;\text{such}\;\text{that}\;\mu(B\sdiff B_\varepsilon) < \varepsilon\;\}.
+\end{equation*}
+\begin{lemma}
+    If $A \in \mathcal{G}$, then $A^c \in \mathcal{G}$.
+\end{lemma}
+\begin{proof}
+    Let $A \in \mathcal{G}$, and let $\varepsilon > 0$. Then choose $B_\varepsilon \in \mathcal{A}$
+    such that $\mu(A \sdiff B_\varepsilon) < \varepsilon$. Hence $\mu(A^c \sdiff B^c_\varepsilon) < \varepsilon$,
+    and since $B^c_\varepsilon \in \mathcal{A}$, we conclude $A \in \mathcal{G}$.
+\end{proof}
+\subsection*{(c)}
+\begin{lemma}
+    Let $A_n \in \mathcal{G}$,$n \geq 1$, with $A_1 \subseteq A_2 \subseteq \cdots A_n \cdots$. 
+    If $A = \bigcup_{n\geq 1} A_n$, then 
+    for any $\varepsilon > 0$ there exists $N > 0$ such that $\mu(A\sdiff A_N) < \varepsilon$.
+\end{lemma}
+\begin{proof}
+    We compute,
+    \begin{align*}
+        \mu(A) &= \mu(\bigcup_{n=1}^\infty A_n)\\
+        &= \lim_{n\rightarrow\infty} \mu(A_n).
+    \end{align*}
+    And, 
+    \begin{equation*}
+        \mu(A\sdiff A_n) = \mu(A\setminus A_n) = \mu(A)-\mu(A_n).
+    \end{equation*}
+    Hence,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \mu(A\sdiff A_n) = 0.
+    \end{equation*}
+\end{proof}
+\subsection*{(d)}
+\begin{corollary}
+    $A \in \mathcal{G}$
+\end{corollary}
+\begin{proof}
+    Let $\varepsilon > 0$. Choose $N > 0$ such that $\mu(A \sdiff A_n) < \varepsilon/2$
+    and select $B \in \mathcal{A}$ such that $\mu(B \sdiff A_n) < \varepsilon/2$.
+    Hence,
+    \begin{equation*}
+        \mu(A\sdiff B) \leq \mu(A\sdiff A_n \cup B\sdiff A_n) \leq \mu(A\sdiff A_n)+\mu(B\sdiff A_n) < \varepsilon.
+    \end{equation*}
+    Hence $A \in \mathcal{G}$.
+\end{proof}
+\subsection*{e}
+\begin{theorem}
+    $\mathcal{G} = \mathcal{F}$.
+\end{theorem}
+\begin{proof}
+    $\mathcal{G}$ is a $d$-class containing $\mathcal{A}$, hence $d(\mathcal{A}) \subseteq \mathcal{G}$.
+    But since $\mathcal{A}$ is an algebra, it is a $\pi$-class. Hence $\mathcal{F} \subseteq \mathcal{G}$
+    since $\sigma(\mathcal{A}) = d(\mathcal{A})$ by the monotone class theorem.    
+\end{proof}
+
+\section*{Question 3}
+In this question we consider the measure space $(X,\mathcal{A},\mu)$
+and the completed measure $\overline{\mu}$ with associated
+algebra $\mathcal{A}_\mu$.
+\begin{lemma}
+    $\mathcal{A}_\mu$ is a $\sigma$-algebra on $X$.    
+\end{lemma}
+\begin{proof}
+    Since $\mathcal{A} \subseteq \mathcal{A}_\mu$, we have $X \in \mathcal{A}_\mu$.
+    
+    Suppose $A \in \mathcal{A}_\mu$. Then by definition there are $E,F \in \mathcal{A}$
+    with $E \subseteq A \subseteq F$ and $\mu(F \setminus E) = 0$. Hence we 
+    have $F^c \subseteq A^c \subseteq E^c$, and $\mu(E^c \setminus A^c) = \mu(F\setminus E) = 0$.
+    Since $F^c, E^c \in \mathcal{A}$, we conclude that $A^c \in A_\mu$.
+    
+    Now let $\{A_n\}_{n=1}^\infty$ be a countable subcollection of $\mathcal{A}_\mu$. 
+    Choose $E_n, F_n \in \mathcal{A}$ for each $n\geq 1$ such that $E_n \subseteq A_n \subseteq F_n$
+    and $\mu(F_n\setminus E_n) = 0$.
+    Hence,
+    \begin{equation*}
+        \bigcup_{n=1}^\infty E_n \subseteq \bigcup_{n=1}^\infty A_n \subseteq \bigcup_{n=1}^\infty F_n
+    \end{equation*}
+    where the left and right hand sides are in $\mathcal{A}$, and
+    \begin{equation*}
+        \mu(\bigcup_{n=1}^\infty F_n \setminus \bigcup_{n=1}^\infty E_n) \leq \sum_{n=1}^\infty \mu(F_n\setminus E_n) = 0.
+    \end{equation*}
+    Hence $\mathcal{A}_\mu$ is a $\sigma$-algebra.    
+\end{proof}
+
+\begin{lemma}
+    $\overline{\mu}$ is a measure on $(X,\mathcal{A}_\mu)$.
+\end{lemma}
+\begin{proof}
+    We need to prove that $\mu$ is countably additive on $\mathcal{A}_\mu$. Suppose
+   
+\end{proof} 
+
+\end{document}
