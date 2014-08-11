@@ -63,7 +63,7 @@ is the Lebesgue measure on $\Rl^d$.
 \end{proof}
 
 \section*{Question 2}
-
+Let $A$,$B$ and $C$ be sets, 
 \subsection*{(a)}
 \begin{lemma}
     
@@ -160,6 +160,7 @@ algebra $\mathcal{A}_\mu$.
 \end{lemma}
 \begin{proof}
     We need to prove that $\mu$ is countably additive on $\mathcal{A}_\mu$. Suppose
+    
    
 \end{proof} 
 
