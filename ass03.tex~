@@ -63,11 +63,33 @@ is the Lebesgue measure on $\Rl^d$.
 \end{proof}
 
 \section*{Question 2}
-Let $A$,$B$ and $C$ be sets, 
+Let $A$,$B$ and $C$ be sets, and define $A \sdiff B := (A\setminus B)\cup (B\setminus A)$.
 \subsection*{(a)}
 \begin{lemma}
-    
+    $A^c \sdiff B^c = A\sdiff B$.
 \end{lemma}
+\begin{proof}
+    This is a simple computation, since by definition,
+    \begin{align*}
+        A^c \sdiff B^c &= (A^c \setminus B^c)\cup (B^c \setminus A^c)\\
+        &= (A^c\cap B)\cup (B^c \cap A)\\
+        &= (B\cap A^c)\cup (A\cap B^c)\\
+        &= (B \setminus A)\cup (A\setminus B)\\
+        &= (A \sdiff B).
+    \end{align*}
+\end{proof}
+\begin{lemma}
+    $A\sdiff C \subseteq (A\sdiff B)\cup (B\sdiff C)$
+\end{lemma}
+\begin{proof}
+    See that
+    \begin{align*}
+        A\sdiff C &= (A\sdiff C)\cap B \cup (A\sdiff C)\cap B^c\\
+        &= (A\cap B\cap C^c)\cup (A^c \cap B \cap C)\cup (A\cap B^c \cap C^c)\cup (A^c\cap B^c\cap C)\\
+        &\subseteq (A^c\cap B)\cup (B^c\cap A)\cup (B\cap C^c)\cup (B^c\cap C)\\
+        &= (A\sdiff B)\cup (B\sdiff C).
+    \end{align*}
+\end{proof}
 
 \subsection*{(b)}
 Now we define
@@ -80,11 +102,11 @@ Now we define
 \begin{proof}
     Let $A \in \mathcal{G}$, and let $\varepsilon > 0$. Then choose $B_\varepsilon \in \mathcal{A}$
     such that $\mu(A \sdiff B_\varepsilon) < \varepsilon$. Hence $\mu(A^c \sdiff B^c_\varepsilon) < \varepsilon$,
-    and since $B^c_\varepsilon \in \mathcal{A}$, we conclude $A \in \mathcal{G}$.
+    and since $B^c_\varepsilon \in \mathcal{A}$, we conclude $A^c \in \mathcal{G}$.
 \end{proof}
 \subsection*{(c)}
 \begin{lemma}
-    Let $A_n \in \mathcal{G}$,$n \geq 1$, with $A_1 \subseteq A_2 \subseteq \cdots A_n \cdots$. 
+    Let $A_n \in \mathcal{G}$,$n \geq 1$, with $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_n \subseteq \cdots$. 
     If $A = \bigcup_{n\geq 1} A_n$, then 
     for any $\varepsilon > 0$ there exists $N > 0$ such that $\mu(A\sdiff A_N) < \varepsilon$.
 \end{lemma}
@@ -121,9 +143,28 @@ Now we define
     $\mathcal{G} = \mathcal{F}$.
 \end{theorem}
 \begin{proof}
-    $\mathcal{G}$ is a $d$-class containing $\mathcal{A}$, hence $d(\mathcal{A}) \subseteq \mathcal{G}$.
+    Suppose $A,B \in \mathcal{G}$. Then 
+    choose $A_\varepsilon,B_\varepsilon \in \mathcal{A}$ such that
+    $\mu(A\sdiff A_\varepsilon) < \varepsilon/2$ and $\mu(B\sdiff B_\varepsilon) < \varepsilon/2$.
+    
+    Then 
+    \begin{align*}
+        \mu((A\cap B)\sdiff (A_\varepsilon\cap B_\varepsilon)) &= \mu((A\cap B)\setminus(A_\varepsilon \cap B_\varepsilon)\cup((A_\varepsilon\cap B_\varepsilon)\setminus (A\cap B))\\
+        &= \mu((A\cap B)\setminus A_\varepsilon \cup (A\cap B)\setminus B_\varepsilon \cup (A_\varepsilon \cap B_\varepsilon)\setminus A \cup (A_\varepsilon \cap B_\varepsilon)\setminus B)\\
+        &\leq \mu(A\sdiff A_\varepsilon \cap B\sdiff B_\varepsilon)\\
+        &\leq \varepsilon.        
+    \end{align*}
+    Hence $\mathcal{G}$ is closed under intersection. Thus $\mathcal{G}$
+    is closed under relative complement since it is closed
+    under complement.
+
+    Hence $\mathcal{G}$ is a $d$-class containing $\mathcal{A}$ since we have
+    shown that it is closed under complement and increasing countable union, hence $d(\mathcal{A}) \subseteq \mathcal{G}$.
     But since $\mathcal{A}$ is an algebra, it is a $\pi$-class. Hence $\mathcal{F} \subseteq \mathcal{G}$
-    since $\sigma(\mathcal{A}) = d(\mathcal{A})$ by the monotone class theorem.    
+    since $\sigma(\mathcal{A}) = d(\mathcal{A})$ by the monotone class theorem.  
+    
+    Since by definition $\mathcal{G} \subseteq \mathcal{F}$,
+    we conclude $\mathcal{F} = \mathcal{G}$.  
 \end{proof}
 
 \section*{Question 3}
@@ -161,7 +202,56 @@ algebra $\mathcal{A}_\mu$.
 \begin{proof}
     We need to prove that $\mu$ is countably additive on $\mathcal{A}_\mu$. Suppose
     
+    that $\{A_n\}_{n=1}^\infty$ is a sequence of $\overline{\mu}$-measurable sets
+    that is pairwise disjoint. Then choose $E_n,F_n \in \mathcal{A}$
+    such that $E_n \subseteq A_n \subseteq F_n$ and $\mu(F_n\setminus E_n) = 0$. 
+    
+    Hence $\overline{\mu}(A_n) = \mu(E_n)$. 
+    Then we have
+    \begin{equation*}
+        \bigcup E_n \subseteq_{n=1}^\infty \bigcup A_n \subseteq_{n=1}^\infty \bigcup_{n=1}^\infty F_n
+    \end{equation*}
+    Then since $\{\mu}(\bigcup_{n=1}^\infty F_n\setminus \bigcup_{n=1}^\infty E_n) = 0$,
+    we have
+    \begin{equation*}
+        \overline{\mu}(\bigcup_{n=1}^\infty A_n) = \mu(\bigcup_{n=1}^\infty E_n).
+    \end{equation*} 
+    But since the $A_n$ are pairwise disjoint, so are the $E_n$, and so
+    \begin{align*}
+        \overline{\mu}(\bigcup_{n=1}^\infty A_n) &= \sum_{n=1}^\infty \mu(E_n)\\ 
+        &= \sum_{n=1}^\infty \overline{\mu}(A_n).
+    \end{align*}
+    
+    Hence $\overline{\mu}$ is countably additive, hence a measure.
    
 \end{proof} 
 
+\begin{lemma}
+    The restriction of $\overline{\mu}$ to $\mathcal{A}$
+    is $\mu$.
+\end{lemma}
+\begin{proof}
+    Let $E \in \mathcal{A}$. Then $E \in \mathcal{A}_\mu$
+    since $E\subseteq E\subseteq E$, and $\mu (E\setminus E) = 0$.
+    
+    Then $\overline{\mu} = \mu(E)$. Hence $\overline{\mu}$
+    restricted to $\mathcal{A}$ is $\mu$.
+\end{proof}
+
+\begin{lemma}
+    The measure space $(X,\mathcal{A}_\mu,\overline{\mu})$
+    is complete.
+\end{lemma}
+\begin{proof}
+    We need to show that every subset of a $\overline{\mu}$-null
+    set is measurable.
+    
+    Suppose $E \in 2^X$ with $E \subseteq F \in \mathcal{A}_\mu$
+    and $\overline{\mu}(F) = 0$. Then since $\emptyset \in \mathcal{A}$,
+    and there is some set $B \in \mathcal{A}$ with $F \subseteq B$
+    and $\mu(B\setminus \emptyset) = \mu(B) = 0$,
+    then $F \in \mathcal{A}_\mu$ and $\overline{\mu}(F) = \mu(B) = 0$.
+    
+    Hence $(X,\mathcal{A}_\mu, \overline{\mu})$ is complete.
+\end{proof} 
 \end{document}
