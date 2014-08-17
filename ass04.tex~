@@ -1,0 +1,27 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Homework 4}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}(\Rl)}
+\newcommand{\sdiff}{\bigtriangleup}
+
+\unswtitle{}
+
+
+\section*{Question 1}
+
+
+
+
+\end{document}
