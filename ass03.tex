@@ -138,7 +138,7 @@ Now we define
     \end{equation*}
     Hence $A \in \mathcal{G}$.
 \end{proof}
-\subsection*{e}
+\subsection*{(e)}
 \begin{theorem}
     $\mathcal{G} = \mathcal{F}$.
 \end{theorem}
@@ -152,7 +152,7 @@ Now we define
         \mu((A\cap B)\sdiff (A_\varepsilon\cap B_\varepsilon)) &= \mu((A\cap B)\setminus(A_\varepsilon \cap B_\varepsilon)\cup((A_\varepsilon\cap B_\varepsilon)\setminus (A\cap B))\\
         &= \mu((A\cap B)\setminus A_\varepsilon \cup (A\cap B)\setminus B_\varepsilon \cup (A_\varepsilon \cap B_\varepsilon)\setminus A \cup (A_\varepsilon \cap B_\varepsilon)\setminus B)\\
         &\leq \mu(A\sdiff A_\varepsilon \cap B\sdiff B_\varepsilon)\\
-        &\leq \varepsilon.        
+        &< \varepsilon.        
     \end{align*}
     Hence $\mathcal{G}$ is closed under intersection. Thus $\mathcal{G}$
     is closed under relative complement since it is closed
@@ -209,7 +209,7 @@ algebra $\mathcal{A}_\mu$.
     Hence $\overline{\mu}(A_n) = \mu(E_n)$. 
     Then we have
     \begin{equation*}
-        \bigcup E_n \subseteq_{n=1}^\infty \bigcup A_n \subseteq_{n=1}^\infty \bigcup_{n=1}^\infty F_n
+        \bigcup_{n=1}^\infty  E_n \subseteq\bigcup_{n=1}^\infty A_n \subseteq  \bigcup_{n=1}^\infty F_n
     \end{equation*}
     Then since ${\mu}(\bigcup_{n=1}^\infty F_n\setminus \bigcup_{n=1}^\infty E_n) = 0$,
     we have

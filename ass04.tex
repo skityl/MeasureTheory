@@ -20,8 +20,81 @@
 
 
 \section*{Question 1}
+For this question, $(X,\mathcal{A},\mu)$ is a measure space.
+\begin{lemma}
+    The set 
+    \begin{equation*}
+        \{[a,\infty)\;:\;a \in\Rl\}
+    \end{equation*}
+    generates $\mathcal{B}(\Rl)$.
+\end{lemma}
+\begin{proof}
+    Since $[a,b) = [c,\infty)^c\cap [a,\infty)$, by the result
+    of homework week 2, this set generates $\mathcal{B}(\Rl)$.
+\end{proof}
+Hence to prove that $f:X\rightarrow\Rl$ is Borel
+measurable, it is sufficient to show that $f^{-1}([a,\infty)) \in \mathcal{A}$
+for all $a \in \Rl$.
 
+\begin{lemma}
+\label{fnsonR}
+     If $f,g:X\rightarrow \Rl$ are Borel measurable functions, then $f+g$ is Borel
+     measurable.
+\end{lemma}
+\begin{proof}
+     Let $a \in \Rl$. Then for every $r \in \mathbb{Q}$, we
+     have $f(x) + g(x) \geq a$ if and only if $f(x) \geq r$ and $g(x) \geq a-r$. Hence,
+     \begin{equation*}
+         (f+g)^{-1}([a,\infty)) = \bigcup_{r \in \mathbb{Q}} \{ f^{-1}([r,\infty])\cap g^{-1}([a-r,\infty))\}
+     \end{equation*}
+     Since $f$ and $g$ are Borel measurable, the right hand side is in $\mathcal{A}$.
+     Hence $f+g$ is Borel measurable.
+\end{proof}
+\begin{lemma}
+    The following functions on $\Rl$ are Borel measurable:
+    \begin{itemize}
+        \item{} $s_1(x) = x^2$
+        \item{} $s_2(x) = \alpha x$, for any $\alpha \in \Rl$
+        \item{} $s_3(x) = x^{-1}$, is measurable on the subspace $\Rl\setminus\{0\}$.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Let $a \in \Rl$. If $a < 0$, then $s_1^{-1}([a,\infty)) = \Rl$ and otherwise $s^1^{-1}([a,\infty)) = (-\infty,-\sqrt{a})\cup(\sqrt{a},\infty)$.
+    Hence $s_1$ is Borel.
+    
+    For $s_2$, the case $\alpha = 0$ is trivial. Suppose $\alpha > 0$. Then $s_2^{-1}([a,\infty)) = [a/\alpha,\infty)$. Similarly,
+    if $\alpha < 0$, $s_2^{-1}([a,\infty)) = (-\infty, a/\alpha)$. Hence $s_2$ is Borel for any $\alpha$.
+    
+    Now if $a > 0$, $s_3^{-1}([a,\infty)) = (0,1/a)$ and if $a = 0$ $s_3^{-1}([a,\infty)) = (0,\infty)$.
+    
+    If $a < 0$, $s_3^{-1}([a,\infty)) = (-\infty,1/a)\cup (0,\infty)$.
+    
+    Hence $s_3$ is Borel since the set $(0,1/a)$, $(0,\infty)$, $-\infty,1/a)$ and $(0,\infty)$ are
+    Borel on the subspace $\Rl\setminus \{0\}$.
+\end{proof}
 
+\begin{corollary}
+    Let $f:X\rightarrow\Rl$ be measurable. The following functions on $X$ are measurable:
+    \begin{itemize}
+        \item{} $f_1 = f^2$
+        \item{} $f_2 = \alpha f$ for any $\alpha \in \Rl$.
+        \item{} $f_3 = 1/f$, measurable on the subspace of $X$ given by $X\setminus\{x\;:\;f(x) = 0\}$.
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    We see that $f_1$ and $f_2$ are measurable since $f_1 = s_1\circ f$ and $f_2 = s_2 \circ f$ using
+    $s_1$ and $s_2$ from lemma \ref{fnsonR}.
+    
+    For $f_3$, note that $X\setminus\{x\;:\; f(x) = 0\} = f^{-1}(\Rl\setminus \{0\})$, and by definition
+    subsets of $X\setminus \{x\;:\;f(x)=0\}$ are measurable if they are the intersection with some element
+    of $\mathcal{A}$.
+    
+    See that since $f_3 = s_3 \circ f$, it is measurable.
+\end{proof}
+
+\begin{lemma}
+    If $f,g:X\rightarrow\Rl$ are measurable, then 
+\end{lemma}
 
 
 
