@@ -1,0 +1,135 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Assignment 1}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}(\Rl)}
+\newcommand{\sdiff}{\bigtriangleup}
+
+\unswtitle{}
+
+
+\section*{Question 2}
+Let $X$ be a set, and $(Y,\mathcal{B})$ is a measurable space. $f:X\rightarrow Y$
+is a function.
+\begin{lemma}
+    The collection of subsets of $X$, $\mathcal{A} = \{f^{-1}(B)\;:\;B \in \mathcal{B}\}$
+    is a $\sigma$-algebra and the smallest $\sigma$-algebra on $X$
+    such that $f$ is measurable.
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+    
+\section*{Question 3}
+    In this question, $(X,\mathcal{A},\mu)$ is a measure space.
+    
+    Suppose $\{A_{n}\}{n\geq 0}$ is a sequence of sets in $\mathcal{A}$ then 
+    the following holds:
+    \begin{lemma}
+    \label{charSup}
+        \begin{equation*}
+            \inf_{n} \chi_{A_n} = \chi_{\bigcap_n A_n}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \sup_{n} \chi_{A_n} = \chi_{\bigcup_n A_n}
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        Let $x \in X$. If $\inf_n \chi_{A_n}(x) = 1$ means that
+        there is no $k$ such that $x \notin A_n$. Hence $x \in \bigcap_{n} A_n$.
+        
+        Similarly, if $x \in \bigcap_{n} A_n$, then $\inf_n \chi_{A_n}(x) = 1$
+        since for any $n$, $\chi_{A_n}(x) = 1$.
+        
+        Now we write, using $\chi_{B^c} = 1-\chi_B$,
+        \begin{align*}
+            \inf_n \chi_{A_n^c} &= \chi_{\bigcup_n A_n^c}\\
+            1-\inf_n\chi_{A_n^c} &= \chi_{\bigcap_n A_n}\\
+            \sup_n 1-\chi_{A_n^c} &=  \chi_{\bigcap_n A_n}\\
+            \sup_n \chi_{A_n} &= \chi_{\bigcap_n A_n}
+        \end{align*}
+    \end{proof}
+    
+    Now we define
+    \begin{equation*}
+        \liminf_n A_n := \bigcup_n \bigcap_{k\geq n} A_k.
+    \end{equation*}
+    
+    \begin{theorem}
+    \label{3equiv}
+        The following are equivalent,
+        \begin{align*}
+            x &\in \liminf_n A_n \\
+            \liminf_n \chi_{A_n}(x) &= 1
+        \end{align*}
+        and $x \in A_n$ for all but finitely many $n$.
+    \end{theorem}
+    \begin{proof}
+        Using lemma \ref{charSup}, we write 
+        \begin{align*}
+            \liminf_n \chi_{A_n}(x) &= \sup_{n} \inf_{k\geq n} \chi_{A_k}\\
+            &= \sup_{n} \chi_{\bigcap_{k\geq n}} A_k\\
+            &= \chi_{\liminf_n A_n}(x).
+        \end{align*}
+        
+        
+    Hence $x \in \liminf_n A_n$ if and only if $\liminf_n \chi_{A_n} = 1$.
+    
+    If $\liminf_n \chi_{A_n}(x) = 1$. then $1$ is the only limit point
+    of the sequence $\chi_{A_n}(x)$, hence since $\chi_{A_n}$
+    takes only the values $0$ and $1$, it must take the value $0$
+    only finitely many times. Hence $x \in A_n$ for all but finitely many $n$.
+    
+    Conversely, if $x \in A_n$ for all but finitely many $n$, 
+    then the numerical sequence $\chi_{A_n}(x)$ takes the value $0$
+    only finitely many times. Since it must have a limit point,
+    we conclude $\liminf_{n}\chi_{A_n}(x) = 1$.
+    \end{proof}
+    
+    Now we define
+    \begin{equation*}
+        \limsup_n A_n = \bigcap_n \bigcup_{k\geq n} A_k
+    \end{equation*}
+    
+    \begin{theorem}
+        The following are equivalent:
+        \begin{align*}
+            x &\in \limsup_n A_n\\
+            \limsup_{n} \chi_{A_n}(x) &= 1
+        \end{align*}
+        and $x \notin A_n$ for infinitely many $n$.
+    \end{theorem}
+    \begin{proof}
+        The equivalence of the first two statements is identical
+        to theorem \ref{3equiv}.
+        
+        For the third statement, if $\limsup_n \chi_{A_n}(x) = 1$
+        then the numerical sequence $\chi_{A_n}(x)$ has $1$ as a limit point,
+        so $x$ must be in $A_n$ infinitely often.
+        
+        Conversely, if $x$ is in $A_n$ infinitely often then $1$
+        is a limit point of the sequence $\chi_{A_n}(x)$. Hence it must be the largest
+        limit point so $\limsup_{n} \chi_{A_n}(x) = 1$.
+    \end{proof} 
+    
+    Hence it is clear that $\liminf_n A_n \subseteq \limsup_n A_n$
+    since $\chi_{\liminf_n A_n}(x) = \liminf_{n} \chi_{A_n}(x) \leq \limsup_{n} \chi_{A_n}(x) = \chi_{\limsup_n A_n}$.
+    
+    
+    
+
+
+\end{document}

@@ -14,7 +14,7 @@ spell: ass$(NUM).tex
 tea:
 	@echo "Make it yourself!"
 
-ques: assignment$(NUM).pdf
+ques: Assignment$(NUM).pdf
 	$(READ) $<
 
 class_update:
