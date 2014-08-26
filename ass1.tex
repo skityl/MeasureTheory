@@ -22,13 +22,60 @@
 \section*{Question 2}
 Let $X$ be a set, and $(Y,\mathcal{B})$ is a measurable space. $f:X\rightarrow Y$
 is a function.
+\subsection*{(a)}
 \begin{lemma}
     The collection of subsets of $X$, $\mathcal{A} = \{f^{-1}(B)\;:\;B \in \mathcal{B}\}$
     is a $\sigma$-algebra and the smallest $\sigma$-algebra on $X$
     such that $f$ is measurable.
 \end{lemma}
 \begin{proof}
+    Clearly $X = f^{-1}(Y)$ and $\emptyset = f^{-1}(\emptyset)$ are in $\mathcal{A}$,
+    and if $A = f^{-1}(B) \in \mathcal{A}$ then $A^c = f^{-1}(B^c) \in \mathcal{A}$.
     
+    
+    Now if $\{A_n\}_{n=1}^{\infty} \subseteq \mathcal{A}$, with $A_n = f^{-1}(B_n)$,
+    then $\bigcup_n A_n = f^{-1}(\bigcup_n B_n) \in \mathcal{A}$.
+    
+    Hence $\mathcal{A}$ is a $\sigma$-algebra.
+    
+    If $\mathcal{A}'$ is any other $\sigma$-algebra on $X$ such that $f$
+    is $\mathcal{A}'/\mathcal{B}$ measurable, then by definition
+    for any $B \in \mathcal{B}$, $f^{-1}(B) \in \mathcal{A}'$, so    
+    we
+    must have $\mathcal{A} \subseteq \mathcal{A}'$.
+        
+    
+\end{proof}
+\subsection*{(ii)}
+Now let $(Z,\mathcal{C})$
+be a measurable space, and $h:(X,\mathcal{A})\rightarrow (Z,\mathcal{C})$
+is measurable and takes only countably many values $\{c_n\}_{n=1}^\infty \subseteq \mathcal{C}$.
+
+\begin{lemma}
+    There exists a measurable function $g:(Y,\mathcal{B})\rightarrow (Z,\mathcal{C})$
+    such that $h = g\circ f$.
+\end{lemma}
+\begin{proof}
+    Since for each $n$, $\{c_n\} \in \mathcal{C}$, by the measurability
+    of $h$ we have $h^{-1}(\{c_n\}) \in \mathcal{A}$.
+    
+    Hence there exist $B_n \in \mathcal{B}$ such that $h^{-1}(\{c_n\}) = f^{-1}(B_n)$.
+    
+    Define $g:Y\rightarrow Z$ by $g(x) = c_n$ if $x \in B_n$. 
+    
+    This is unambiguous, since if $B_n \cap B_m \neq \emptyset$, then $c_n = c_m$,
+    
+    and $h^{-1}(\{c_n\}_{n=1}^\infty) = X = f^{-1}(\bigcup_{n} B_n)$,
+    so $g(x)$ is uniquely defined for any $x \in Y$.
+    
+    By construction $g$ is measurable, since if $C \in \mathcal{C}$
+    contains the points $\{c_{n_k}\}_{k=1}^\infty$, then $g^{-1}(C) = \bigcup_{n_k} B_{n_k} \in \mathcal{B}$.
+    
+    If $x \in X$, then $f(x) \in B_n$ for some $n$ since $X = f^{-1}(\bigcup_n B_n)$.
+    Then $g(f(x)) = c_n$, but since f(x) \in B_n$, $x \in f^{-1}(B_n) = h^{-1}(\{c_n\})$.
+    
+    So $h(x) = c_n = g(f(x))$.
+    Hence we have $h = g\circ f$, as required.
 \end{proof}
 
     
@@ -129,7 +176,72 @@ is a function.
     since $\chi_{\liminf_n A_n}(x) = \liminf_{n} \chi_{A_n}(x) \leq \limsup_{n} \chi_{A_n}(x) = \chi_{\limsup_n A_n}$.
     
     
+\section*{Question 4}
+For this question, $(X,\mathcal{A},\mu)$ is a measure space with $\mu(X) <\infty$
+and $C \subseteq X$.
+
+\subsection*{(a)}
+\begin{lemma}
+    $\mathcal{A}_C = \{A\cap C\;:\;A \in \mathcal{A}\}$
+    is a $\sigma$-algebra on $C$.
+\end{lemma}
+\begin{proof}
+    We have $C = C\cap X \in\mathcal{A}_C$,
+    and if $A\cap C \in \mathcal{A}$, then $A^c\cap C = C\setminus A \in \mathcal{A}_C$. 
     
+    Now if $\{C_n\}_{n=1}^\infty$ is a countable subset of $\mathcal{A}_C$,
+    with $C_n = C\cap A_n$ for $A_n \in \mathcal{C}$,
+    then $\bigcup_n C_n = \bigcup_n C\cap A_n = C\cap \bigcup_n A_n \in \mathcal{A}_C$.
+    
+    Hence $\mathcal{A}_C$ is a $\sigma$-algebra.
+\end{proof}
+
+\subsection*{(b)}
+Now define the outer and inner measures $\mu_*,\my^*:2^X\rightarrow[0,\infty]$
+by the usual formualae,
+\begin{align*}
+    \mu_*(B) &= \sup\{\mu(A)\;:\;A\subseteq B,A\in\mathcal{A}\}\\
+    \mu^*(B) &= \inf\{\mu(A)\;:\;A\supseteq B,A\in\mathcal{A}\}.
+\end{align*}
+\begin{lemma}
+    For each $B \in 2^X$ there exist $A_0 \subseteq B \subseteq A_1$
+    with $A_0,A_1 \in \mathcal{A} and $\mu(A_0) = \mu_*(B)$
+    and $\mu(A_1) = \mu^*(B)$.
+\end{lemma}
+\begin{proof}
+    We may choose $C_n \in \mathcal{A}$ such that $\mu^*(B) \leq \mu(C_n) \leq \mu^*(B)+\frac{1}{n}$
+    
+    Then $B \subseteq \bigcap_n C_n \in \mathcal{A}$,
+    and for every $n$,
+    \begin{equation*}
+        \mu(\bigcap_{n} C_n) \leq \mu^*(B) + \frac{1}{n}
+    \end{equation*} 
+    Hence, if $A_1 = \bigcap_n C_n$, we have $\mu(A_1) = \mu^*(B)$.
+    
+    
+    Similarly, choose $C_n' \in \mathcal{A}$ $C_n' \subseteq B$
+    and $\mu_*(B) \geq \mu(C_n') \geq \mu*(B) -\frac{1}{n}$,
+    and define $A_0 = \bigcup_n C_n'$.
+\end{proof}
+
+\subsection*{(c)}
+Let $C_1 \in \mathcal{A}$
+with $C \subseteq C_1$
+be such that $\mu(C_1) = \mu^*(C)$.
+
+\begin{lemma}
+    Suppose $A_1, A_2 \in \mathcal{A}$ with $A_1\cap C = A_2\cap C$. Then
+    $\mu(A_1\cap C_1) = \mu(A_2\cap C_1)$.
+\end{lemma}
+\begin{proof}
+        
+\end{proof}
+
+
+
+
+
+
 
 
 \end{document}
