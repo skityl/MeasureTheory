@@ -20,16 +20,79 @@
 
 
 \section*{Question 1}
-Let $d \geq 1$ be an integer, and $S = \prod_{k=1}^d [a_k,b_k)$.
+Let $d \geq 1$ be an integer, and $S = \prod_{k=1}^d (a_k,b_k]$.
 \begin{theorem}
     If $f:S\rightarrow \Rl$ is Riemann integrable, then $f$ is Lebesgue integrable
     and $\int_S f\;d\lambda = \int_S f(x)\;dx$.
 \end{theorem}
 \begin{proof}
     Choose a sequence of partitions $\mathcal{P}_n = \{C_{nk}\}$
-    of $S$ such that 
+    of $S$ such that the maximum diameter of $C_{nk}$ vanishes as $n$ goes to infinity,
+    and $\mathcal{P}_{n+1}$ refines $\mathcal{P}_n$.
+    Define the simple functions,
+    \begin{align*}
+        \ell_n &= \sum_{k} \inf_{x \in C_{nk}}f(x)\chi_{C_{nk}}\\
+        u_n &= \sum_{k} \sup_{x \in C_{nk}}f(x)\chi_{C_{nk}}.
+    \end{align*}
+    By assumption these suprema and infima exist since $f$ is Riemann integrable.
+    Then since the partition consists of disjoint sets, we may write
+    \begin{align*}
+        \int \ell_n\;d\lambda &= \sum_{k} \inf_{x \in C_{nk}} f(x)\lambda(C_{nk}) = L(f;\mathcal{P}_n)\\\
+        \int u_n\;d\lambda &= \sum_k \sup_{x \in C_{nk}}f(x) \lambda(C_{nk}) = U(f;\mathcal{P}_n).
+    \end{align*}
+    By the assumption that $f$ is Riemann integrable, these integrals are finite.
+    
+    Since $\mathcal{P}_{n+1}$ refines $\mathcal{P}_n$, we must have that $\ell_{n+1}\geq \ell_n$
+    and $u_{n+1}\leq u_n$. Hence the sequences $\{\ell_n\}_{n=1}^\infty$ and $\{u_n\}_{n=1}^\infty$
+    are monotonically increasing and decreasing respectively.
+    
+    Since for each $x \in S$, we have $\ell_n(x) \leq u_k(x) < \infty$ for all $k$, the supremum $\sup_n \ell_n$
+    is a well defined function, and is measurable, and we have the bound $\sup_n \ell_n \leq u_k$ for all $k$.
+    Similarly, $\inf_n u_n$ is well defined and measurable, and we have $\sup_n \ell_n \leq \inf_n u_n$.
+    
+    For all $n$, the we have the bound $|\ell_n| \leq \max\{|\ell_1|,|u_1|\} \in L^1$
+    and $|u_n| \leq \max\{|u_1|,|\ell_1\} \in L^1$,    
+    so by the dominated
+    convergence theorem,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \int_S \ell_n\;d\lambda = \int_S \sup_{n} \ell_n\;d\lambda \leq \int_S \inf_{n} u_n\;d\lambda = \lim_{n\rightarrow\infty}\int_Su_n\;d\lambda.
+    \end{equation*}
+    However the left and right hand sides must be equal since they are the limit of the lower and upper Riemann sums respectively. Hence,
+    \begin{equation*}
+        \int_S |\inf_n u_n-\sup_n \ell_n|\;d\lambda = 0.
+    \end{equation*}
+    Thus, $\inf_n u_n = \sup_n \ell_n$ $\lambda$-almost everywhere.
+    
+    Note that for any $x$, $\inf_n u_n(x) \geq f(x) \geq \sup_n \ell_n(x)$.
+    
+    Thus $f(x) = \inf_n u_n(x) = \sup_n \ell_n(x)$ for $\lambda$-almost all $x$.
+    
+    Hence, $f$ agrees almost everywhere with a Lebesgue integrable function, so we may
+    regard it as Lebesgue integrable, and
+    \begin{equation*}
+        \int_S f\;d\lambda = \lim_{n\rightarrow\infty} \int_S \ell_n\;d\lambda = \int_S f(x)\;dx.
+    \end{equation*}
+    
 \end{proof}
 
+\begin{theorem}
+    $f$ is continuous $\lambda$-almost everywhere on $S$.
+\end{theorem}
+\begin{proof}
+    Choose a specific sequence of partitions of $S$, $\mathcal{P}_n = \{C_{nk}\}_k$
+    such that each $C_{nk}$ is a box. Let $E$ denote the set of points
+     $x \in S$ such that $\lim_n u_n(x) = f(x) = \lim_n \ell_n(x)$
+     and also such that $x$ does not lie on the boundary of $C_{nk}$ for any $n$ or $k$.
+     
+     We know that $\lambda(S\setminus E) = 0$, and $E$ is Borel measurable.
+     
+    Let $\varepsilon > 0$, and $x \in E$. Choose $N$ large enough such that for $n > N$,
+    $u_n(x) -\ell_n(x) < \varepsilon$. Since $x$ lies in the interior of some $C_{Nk}$, choose $\delta$
+    small enough such that $\|y-x\| < \delta$ implies that $y \in C_{Nk}$.
+    
+    Since $u_N$ and $\ell_N$ are constant on $C_{Nk}$, we have $\ell_N(x) \leq f(y) \leq u_N(x)$. 
+    Hence $|f(x)-f(y)| < \varepsilon$.
+\end{proof}
 
 
 \section*{Question 2}
