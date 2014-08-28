@@ -1,0 +1,323 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Homework 4}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}(\Rl)}
+\newcommand{\sdiff}{\bigtriangleup}
+
+\unswtitle{}
+
+
+\section*{Question 1}
+For this question, $(X,\mathcal{A},\mu)$ is a measure space.
+\begin{lemma}
+    The set 
+    \begin{equation*}
+        \{[a,\infty)\;:\;a \in\Rl\}
+    \end{equation*}
+    generates $\mathcal{B}(\Rl)$.
+\end{lemma}
+\begin{proof}
+    Since $[a,b) = [c,\infty)^c\cap [a,\infty)$, by the result
+    of homework week 2, this set generates $\mathcal{B}(\Rl)$.
+\end{proof}
+Hence to prove that $f:X\rightarrow\Rl$ is Borel
+measurable, it is sufficient to show that $f^{-1}([a,\infty)) \in \mathcal{A}$
+for all $a \in \Rl$.
+
+\begin{lemma}
+\label{fnsonR}
+     If $f,g:X\rightarrow \Rl$ are Borel measurable functions, then $f+g$ is Borel
+     measurable.
+\end{lemma}
+\begin{proof}
+     Let $a \in \Rl$. Then for every $r \in \mathbb{Q}$, we
+     have $f(x) + g(x) \geq a$ if and only if $f(x) \geq r$ and $g(x) \geq a-r$. Hence,
+     \begin{equation*}
+         (f+g)^{-1}([a,\infty)) = \bigcup_{r \in \mathbb{Q}} \{ f^{-1}([r,\infty])\cap g^{-1}([a-r,\infty))\}
+     \end{equation*}
+     Since $f$ and $g$ are Borel measurable, the right hand side is in $\mathcal{A}$.
+     Hence $f+g$ is Borel measurable.
+\end{proof}
+\begin{lemma}
+    The following functions on $\Rl$ are Borel measurable:
+    \begin{itemize}
+        \item{} $s_1(x) = x^2$
+        \item{} $s_2(x) = \alpha x$, for any $\alpha \in \Rl$
+        \item{} $s_3(x) = x^{-1}$, is measurable on the subspace $\Rl\setminus\{0\}$.
+        \item{} $s_4(x) = |x|$
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Let $a \in \Rl$. If $a < 0$, then $s_1^{-1}([a,\infty)) = \Rl$ and otherwise $s_1^{-1}([a,\infty)) = (-\infty,-\sqrt{a})\cup(\sqrt{a},\infty)$.
+    Hence $s_1$ is Borel.
+    
+    For $s_2$, the case $\alpha = 0$ is trivial. Suppose $\alpha > 0$. Then $s_2^{-1}([a,\infty)) = [a/\alpha,\infty)$. Similarly,
+    if $\alpha < 0$, $s_2^{-1}([a,\infty)) = (-\infty, a/\alpha)$. Hence $s_2$ is Borel for any $\alpha$.
+    
+    Now if $a > 0$, $s_3^{-1}([a,\infty)) = (0,1/a)$ and if $a = 0$ $s_3^{-1}([a,\infty)) = (0,\infty)$.
+    
+    If $a < 0$, $s_3^{-1}([a,\infty)) = (-\infty,1/a)\cup (0,\infty)$.
+    
+    Hence $s_3$ is Borel since the set $(0,1/a)$, $(0,\infty)$, $-\infty,1/a)$ and $(0,\infty)$ are
+    Borel on the subspace $\Rl\setminus \{0\}$.
+    
+    Now $s_4^{-1}([a,\infty)) = (-\infty,-a]\cup[a,\infty)$ for any $a \in \Rl$, and 
+    so $s_4$ is measurable.
+\end{proof}
+
+\begin{corollary}
+    Let $f:X\rightarrow\Rl$ be measurable. The following functions on $X$ are measurable:
+    \begin{itemize}
+        \item{} $f_1 = f^2$
+        \item{} $f_2 = \alpha f$ for any $\alpha \in \Rl$.
+        \item{} $f_3 = 1/f$, measurable on the subspace of $X$ given by $X\setminus\{x\;:\;f(x) = 0\}$.
+        \item{} $f_4 = |f|$.
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    We see that $f_1$, $f_2$ and $f_4$ are measurable since $f_1 = s_1\circ f$, $f_2 = s_2 \circ f$
+    and $f_4 = s_4\circ f$ using
+    $s_1$, $s_2$ and $s_4$ from lemma \ref{fnsonR}.
+    
+    For $f_3$, note that $X\setminus\{x\;:\; f(x) = 0\} = f^{-1}(\Rl\setminus \{0\})$, and by definition
+    subsets of $X\setminus \{x\;:\;f(x)=0\}$ are measurable if they are the intersection with some element
+    of $\mathcal{A}$.
+    
+    See that since $f_3 = s_3 \circ f$, it is measurable.
+\end{proof}
+
+\begin{lemma}
+    If $f,g:X\rightarrow\Rl$ are measurable, then so is $fg$.
+\end{lemma}
+\begin{proof}
+    We may write $fg = \frac{1}{2}((f+g)^2-f^2-g^2)$. Hence $fg$ may be written as a composition of measurable functions
+    and is hence measurable.
+\end{proof}
+
+\begin{corollary}
+    If $f$ and $g$ are measurable functions on $X$, then $f/g$ is measurable on $X\setminus\{x\;:\;g(x) = 0\}$.
+\end{corollary}
+\begin{proof}
+    Since $f$ is measurable on $X$, it is measurable on $X\setminus\{x\;:\;g(x)=0\}$. Hence since $1/g$ is measurable
+    on this set, their product is measurable.
+\end{proof}
+
+\begin{lemma}
+    If $f,g:X\rightarrow\Rl$ are measurable, then so is $\max\{f,g\}$ and $\min\{f,g\}$.
+\end{lemma}
+\begin{proof}
+    We may write $\max\{f,g\} = \frac{1}{2}(f+g+|f-g|)$ and $\min\{f,g\} = \frac{1}{2}(f+g-|f-g|)$. Hence
+    these are compositions of measurable functions and so measurable.
+\end{proof}
+
+\begin{lemma}
+    If $f,g:X\rightarrow\Rl$ are measurable, then the sets $\{x\;:\;f(x) = g(x)\}$,
+    $\{x\;:\;f(x) > g(x)\}$ and $\{x\;:\;f(x) \geq g(x)\}$ are measurable.
+\end{lemma}
+\begin{proof}
+    We may write these sets respectively as $(f-g)^{-1}(\{0\})$,
+    $(f-g)^{-1}((0,\infty))$ and $(f-g)^{-1}([0,\infty))$.
+    Hence since $f-g$ is measurable, the result follows.
+\end{proof}
+
+\begin{lemma}
+    If $\{f_n\}_{n=1}^\infty$ is a sequence of measurable functions on $X$, then so is
+    $\inf_{n} f_n$.
+\end{lemma}
+\begin{proof}
+    Let $f = \inf_{n} f_n$ and $a \in \Rl$. Let $x \in f^{-1}([a,\infty))$.
+    Then for all $n$, $f_n(x) \geq a$, so $x \in f_n^{-1}([a,\infty))$.
+    Hence,
+    \begin{equation*}
+        f^{-1}([a,\infty)) \subseteq \bigcap_{n=1}^\infty f_n^{-1}([a,\infty))
+    \end{equation*}
+    Similarly, if $f_n(x) \geq a$ for all $n$, then we must have $f(x) \geq a$. Hence,
+    \begin{equation*}
+        f^{-1}((-\infty,a]) = \bigcap_{n=1}^\infty f_n^{-1}([a,\infty)).
+    \end{equation*}
+    Since each $f_n$ is measurable, the right hand side is measurable. Hence $f$ is measurable.
+\end{proof}
+\begin{corollary}
+    If $\{f_n\}_{n=1}^\infty$ is a sequence of measurable real valued functions on $X$, then
+    the following functions are measurable:
+    \begin{itemize}
+        \item{} $\sup_{n} f_n$
+        \item{} $\limsup_{n} f_n$
+        \item{} $\liminf_{n} f_n$
+    \end{itemize}
+\end{corollary}
+\begin{proof}
+    We may write $\sup_{n} f_n = -\inf_{n} -f_n$, hence it is measurable.
+    
+    $\limsup_n = \inf_{n} \sup_{k\geq n} f_k$ and $\liminf_{n} = \sup_{n}\inf_{k\geq n} f_n$.
+    Hence these functions are measurable.
+\end{proof}
+
+\section*{Question 2}
+    For this question, we consider the measure space $(X,\mathcal{A},\mu)$
+    and a bounded measurable measurable function $f:X\rightarrow [0,\infty)$.
+    
+    Define $F:[0,\infty)\rightarrow[0,\infty]$
+    by $F(t) = \mu(\{x\;:\;f(x) > t\})$.
+    
+\begin{lemma}
+    $F$ is a decreasing function and $F$ vanishes outside some bounded interval.
+\end{lemma}
+\begin{proof}
+    It is clear that $F$ is a decreasing function, since if $s > t$, 
+    \begin{equation*}
+        \{x\;:\;f(x) > s\} \subseteq \{x\;:\;f(x) > t\}.
+    \end{equation*}
+    Hence $\mu\{x\;:\;f(x) > s\} \leq \mu\{x\;:\;f(x) > t\}$, so $F(s) \leq F(t)$.
+    
+    Since $f$ is bounded, there is some $M$ such that $f(x) < M$ for all $x$. Hence for $x > M$, $F(x) = \mu(\emptyset) = 0$.
+    Thus the support of $F$ is contained in $[0,M]$.
+\end{proof}
+
+\begin{lemma}
+    The limit $\lim_{t\rightarrow 0} F(t)$ is finite if and only if the support of $f$ has finite measure.
+\end{lemma}
+\begin{proof}
+    We may write $\lim_{t\rightarrow 0} F(t) = \lim_{n\rightarrow \infty} \mu\{x\;:\;F(x) > 1/n\} = \mu(\bigcap_{n=1}^\infty \{x\;:\;F(x) > 1/n\}) = \mu(\{x\;:\;F(x) > 0\})$.
+    
+    Hence this limit is finite if and only if $F$ is nonzero on a set of finite measure.
+\end{proof}
+\begin{theorem}
+    The indefinite Riemann integral,
+    \begin{equation*}
+        \int_0^\infty F(t) \;dt
+    \end{equation*}
+    exists if $f$ has support of finite measure.
+\end{theorem}
+\begin{proof}
+    Since $F$ vanishes outside some interval $[0,M]$, we have that
+    \begin{equation*}
+        \lim_{N\rightarrow \infty} \int_{0}^N F(t)\;dt = \int_{0}^M F(t)\;dt.
+    \end{equation*}
+    Hence we need only consider the integrability of $F$ on $[0,M]$.
+    
+    Since $f$ has support of finite measure, and $F$ is a decreasing function, we have that $F$ is bounded.
+    
+    Hence $F$ is a bounded monotone function, so the Riemann integral exists.
+\end{proof}
+
+Suppose $f$ has support of finite measure and let $F$ have support contained in $[0,N]$. 
+Consider the partition of $[0,N]$ given by $\mathcal{P}_n = \{0,1/2^n,2/2^n,\ldots,N2^n/2^n\}$.
+Let $L_n$ be the corresponding lower Riemann sum of $F$.
+
+\begin{lemma}
+    $L_n$ is given by the integral of a simple function bounded above by $F$, $s_n$
+    given by
+    \begin{equation*}
+        s_n = \sum_{k=0}^{2^nN-1} \chi_{f^{-1}([k/2^n,(k+1)/2^n))} (k/2^n).
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Since $F$ is a decreasing function, the infimum of $F$ on the interval $[k/2^n,(k+1)/2^n)$
+    is $F((k+1)/2^n)$.
+    Hence,
+    \begin{equation*}
+        L_n = \sum_{k=0}^{2^nN-1} F((k+1)/2^n)\frac{1}{2^n}
+    \end{equation*}
+    
+    Now we compute the integral of $s_n$,
+    \begin{align*}
+         \int s_n\;d\mu &= \sum_{k=0}^{2^nN-1} \mu(f^{-1}([k/2^n,(k+1)/2^n))\frac{k}{2^n}\\
+         &= \sum_{k=0}^{2^nN-1} [F(k/2^n)-F((k+1)/2^n)] \frac{k}{2^n}\\
+         &= \sum_{k=0}^{2^nN-1} \sum_{j=1}^{k} \frac{1}{2^n}[F(k/2^n)-F((k+1)/2^n)]\\
+         &= \sum_{j=0}^{2^nN-1} \sum_{k={j}}^{2^nN-1} \frac{1}{2^n}[F(k/2^n)-F((k+1)/2^n)]\\
+         &= \sum_{j=0}^{2^nN-1} \frac{1}{2^n}[F(j/2^n)-F(N+1)]\\
+         &= \sum_{j=1}^{2^nN-1} \frac{1}{2^n}F(j/2^n)\\
+         &= L_n.
+    \end{align*}
+\end{proof}
+\begin{lemma}
+    The simple functions $s_n$ in the above lemma form a monotonic increasing
+    sequence and converge pointwisely to $f$.
+\end{lemma}
+\begin{proof}
+    
+    Fix $x \in X$ and $n \geq 1$. Then $x \in f^{-1}([k/2^n,(k+1)/2^n))$ for
+    some $0 \leq k \leq 2^nN$, since $f$ is bounded above by $n$.
+    
+    Then $s_n(x) = k/2^n$.
+    
+    And $x \in f^{-1}([2k/2^{n+1},(2k+1)/2^{n+1}))\cup f^{-1}([(2k+1)/2^{n+1},(2k+2)/2^{n+2}))$,
+    so $s_{n+1}(x) = k/2^n$ or $s_n(x) = k/2^n + 1/2^n$.
+    
+    Hence $s_{n+1}(x) \geq s_n(x)$, and so the simple functions
+    $s_n$ form a non-decreasing sequence.
+    
+    Now $|f(x)-s_n(x)| \leq 1/2^n$, so $s_n$
+    converges pointwisely to $f$.
+\end{proof}
+\begin{theorem}
+    \begin{equation*}
+        \int f\;d\mu = \int_0^\infty F(t)\;dt.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Since the simple functions $s_n$ are a non-decreasing sequence that converges 
+    pointwisely to $f$, we have by the Beppo-Levi theorem that
+    \begin{equation*}
+        \int f\;d\mu = \lim_{n\rightarrow\infty} \int s_n\;d\mu = \lim_{n\rightarrow\infty} L_n = \int_{0}^\infty F(t)\;dt.
+    \end{equation*}
+\end{proof}
+
+
+\section*{Question 3}
+Again in this question $(X,\mathcal{A},\mu)$ is a measure space
+and $f:X\rightarrow [0,\infty]$ is a measurable function, with
+\begin{equation*}
+    \int f\;d\mu < \infty.
+\end{equation*}
+\begin{theorem}
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} n\mu(\{x\;:\;f(x) > n\}) = 0.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    We assume that $f$ takes only finite values. This does not
+    change the result since $f$ is integrable, so it can 
+    only take the value $\infty$ on a set of measure zero.
+    Since the value of $f$ on a set of measure zero
+    does not change the integral of $f$ or
+    the value of $\mu(\{x\;:\;f(x) > n\})$ for any $n$, we are free
+    to assume that $f < \infty$.
+
+    Let $A_n = f^{-1}([0,n])$, and
+    \begin{align*}
+        f_n &= f\chi_{A_n} + n\chi_{A_n^c}\\
+        g_n &= f\chi_{A_n}
+    \end{align*}
+    Then by definition $f_n \leq f$.
+    
+    Since by assumption $f < \infty$ everywhere, we have
+    \begin{equation*}
+        \bigcup_{n=1}^\infty A_n = X.
+    \end{equation*}    
+    Hence the sequences $f_n$ and $g_n$ converges pointwisely to $f$.
+    So by the Beppo-Levi theorem,
+    
+    \begin{align*}
+        \int f\;d\mu = \lim_{n\rightarrow\infty} \int f_n\;d\mu &= \lim_{n\rightarrow\infty} \int g_n\;d\mu + \lim_{n\rightarrow\infty} \int n\chi_{A_n^c}\;d\mu\\
+        &= \int f\;d\mu + \lim_{n\rightarrow\infty} n\mu(\{x\;:\;f(x) > n\}).
+    \end{align*}
+    Since by assumption $\int f\;d\mu <\infty$, we conclude the required result.
+\end{proof}
+
+
+
+\end{document}

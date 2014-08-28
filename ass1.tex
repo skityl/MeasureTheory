@@ -19,6 +19,19 @@
 \unswtitle{}
 
 
+\section*{Question 1}
+Let $d \geq 1$ be an integer, and $S = \prod_{k=1}^d [a_k,b_k)$.
+\begin{theorem}
+    If $f:S\rightarrow \Rl$ is Riemann integrable, then $f$ is Lebesgue integrable
+    and $\int_S f\;d\lambda = \int_S f(x)\;dx$.
+\end{theorem}
+\begin{proof}
+    Choose a sequence of partitions $\mathcal{P}_n = \{C_{nk}\}$
+    of $S$ such that 
+\end{proof}
+
+
+
 \section*{Question 2}
 Let $X$ be a set, and $(Y,\mathcal{B})$ is a measurable space. $f:X\rightarrow Y$
 is a function.
@@ -72,9 +85,10 @@ is measurable and takes only countably many values $\{c_n\}_{n=1}^\infty \subset
     contains the points $\{c_{n_k}\}_{k=1}^\infty$, then $g^{-1}(C) = \bigcup_{n_k} B_{n_k} \in \mathcal{B}$.
     
     If $x \in X$, then $f(x) \in B_n$ for some $n$ since $X = f^{-1}(\bigcup_n B_n)$.
-    Then $g(f(x)) = c_n$, but since f(x) \in B_n$, $x \in f^{-1}(B_n) = h^{-1}(\{c_n\})$.
+    Then $g(f(x)) = c_n$, but since $f(x) \in B_n$, $x \in f^{-1}(B_n) = h^{-1}(\{c_n\})$.
     
     So $h(x) = c_n = g(f(x))$.
+    
     Hence we have $h = g\circ f$, as required.
 \end{proof}
 
@@ -197,7 +211,7 @@ and $C \subseteq X$.
 \end{proof}
 
 \subsection*{(b)}
-Now define the outer and inner measures $\mu_*,\my^*:2^X\rightarrow[0,\infty]$
+Now define the outer and inner measures $\mu_*,\mu^*:2^X\rightarrow[0,\infty]$
 by the usual formualae,
 \begin{align*}
     \mu_*(B) &= \sup\{\mu(A)\;:\;A\subseteq B,A\in\mathcal{A}\}\\
@@ -205,7 +219,7 @@ by the usual formualae,
 \end{align*}
 \begin{lemma}
     For each $B \in 2^X$ there exist $A_0 \subseteq B \subseteq A_1$
-    with $A_0,A_1 \in \mathcal{A} and $\mu(A_0) = \mu_*(B)$
+    with $A_0,A_1 \in \mathcal{A}$ and $\mu(A_0) = \mu_*(B)$
     and $\mu(A_1) = \mu^*(B)$.
 \end{lemma}
 \begin{proof}
@@ -230,14 +244,117 @@ with $C \subseteq C_1$
 be such that $\mu(C_1) = \mu^*(C)$.
 
 \begin{lemma}
-    Suppose $A_1, A_2 \in \mathcal{A}$ with $A_1\cap C = A_2\cap C$. Then
-    $\mu(A_1\cap C_1) = \mu(A_2\cap C_1)$.
+    $\mu^*(C_1\setminus C) = 0$.
 \end{lemma}
 \begin{proof}
-        
+    There exists some $B \in \mathcal{A}$ with $B \subseteq C_1\setminus C$
+    such that $\mu(B) = \mu^*(C_1\setminus C)$.
+    If $\mu(B) > 0$, then $\mu(C_1) = \mu(B) + \mu(C_1\setminus B) > \mu(C_1\setminus B)$.
+    
+    But $C \subseteq C_1\setminus B$, so $\mu^*(C) \leq \mu(C_1\setminus B)$.
+    Hence $\mu(C_1) > \mu^*(C)$, but this is a contradiction.    
+\end{proof} 
+
+\begin{lemma}
+    If $A \in \mathcal{A}$, then $\mu(A\cap C_1) = \mu^*(A\cap C)$.
+\end{lemma}
+\begin{proof}
+    Since $C \subseteq C_1$, we have $\mu^*(A\cap C) \leq \mu(A\cap C_1)$.
+    
+    Now by the subadditivity of $\mu^*$, $\mu(C_1\cap A) \leq \mu^*(C\cap A) + \mu^*((C_1\setminus C)\cap A)$.
+    But $(C_1\setminus C)\cap A\subseteq C_1\setminus C$, so $\mu^*((C_1\setminus C)\cap A) = 0$.
+    
+    Hence $\mu(A\cap C_1) = \mu^*(A\cap C)$.
 \end{proof}
 
 
+\begin{theorem}
+\label{indep}
+    Suppose $A_1, A_2 \in \mathcal{A}$ with $A_1\cap C = A_2\cap C$. Then
+    $\mu(A_1\cap C_1) = \mu(A_2\cap C_1)$.
+\end{theorem}
+\begin{proof}
+    Since $A_1\cap C = A_2\cap C$, we 
+    have $\mu(A_1\cap C_1) = \mu^*(A_1\cap C) = \mu^*(A_2\cap C) = \mu(A_2\cap C_1)$.
+
+%    By the $\mu^*$ measurability of elements of $\mathcal{A}$, for any $B \subseteq X$, 
+%    \begin{equation*}
+%        \mu^*(B) = \mu^*(B\cap A_i\cap C_1) + \mu^*(B\setminus(A_i\cap C_1)).
+%    \end{equation*}
+%    For $i = 1,2$. Choose $B = C$, then we have
+%    \begin{align*}
+%        \mu(C_1) &= \mu^*(C)\\
+%        &= \mu^*(A_i\cap C) + \mu^*(C\setminus(A_i\cap C_1))\\
+%        &= \mu^*(A_i\cap C) + \mu^*(C\setminus A_i).
+%    \end{align*}
+%    
+%    Now,
+%    \begin{equation*}
+%        \mu(C_1) = \mu(A_i\cap C_1)+\mu(C_1\setminus A_i).
+%    \end{equation*}
+%    
+%    So we have,
+%    \begin{equation*}
+%        \mu(A_i\cap C_1) + \mu(C_1\setminus A_i) = \mu^*(A_i\cap C) + \mu^*(C\setminus A_i).
+%    \end{equation*}
+%    
+%    However since $C\subseteq C_1$, we have $\mu^*(C\setminus A_i)\leq \mu^*(C_1\setminus A_i)$, 
+%    
+%    and by subadditivity of $\mu^*$, $\mu^*(C_1\setminus A_i) \leq \mu^*(C\setminus A_i) + \mu^*(C_1\setminus C)$. 
+%    
+%    Hence $\mu^*(C_1\setminus A_i) = \mu^*(C\setminus A_i)$.
+%    
+%    Thus $\mu(A_1\cap C_1) = \mu^*(A_1\cap C) = \mu*(A_2\cap C) = \mu(A_2\cap C_1)$.
+\end{proof}
+
+
+\subsection*{(c)}
+Now define $\mu_C:\mathcal{A}_C\rightarrow[0,\infty]$
+by $\mu_C(A\cap C) = \mu(A\cap C_1)$,
+
+\begin{theorem}
+    $\mu_C(B) = \mu^*(B)$ for every $B \in \mathcal{A}_C$.
+\end{theorem}
+\begin{proof}
+    Let $B \in \mathcal{A}_C$, then $B = C\cap A$ for some $A \in \mathcal{A}$.
+    
+    Then $\mu_C(B) = \mu(A\cap C_1)$. This does not depend on the choice
+    of $A$ by lemma \ref{indep}.
+    
+    Then $\mu_C(B) = \mu^*(A\cap C) = \mu^*(B)$.
+    
+%    Since $C \subseteq C_1$, we have $\mu^*(A\cap C) \leq \mu(A\cap C_1)$.
+    
+%    Since $A\cap C_1 = A\cap C \cup A\cap (C_1\setminus C)$,
+%    hence $\mu(A\cap C_1)\leq \mu^*(A\cap C)+\mu^*(A\cap C_1\setminus C)$,
+%    but $\mu^*(C_1\setminus C) = 0$, so $\mu(A\cap C_1)\leq \mu^*(A\cap C)$.
+    
+\end{proof}
+
+\subsection*{(d)}
+\begin{corollary}
+    $\mu_C$ is a measure on $A_C$.
+\end{corollary}
+\begin{proof}
+    We have proved that $\mu_C$ is the restriction of $\mu^*$
+    to $\mathcal{A}_C$. It is therefore sufficient
+    to prove that $\mu^*$ is countably additive on $\mathcal{A}_C$. 
+    
+    Let $B_1, B_2 \in \mathcal{A}_C$ with $B_1\cap B_2 = \emptyset$. Then $B_1 = A_1\cap C$ and $B_2 = A_2\cap C$
+    for some $A_1,A_2 \in \mathcal{A}$.
+    
+    Then $\mu^*(B_1\cup B_2) \leq 
+
+%    Since we have $\mu_C(\emptyset) = \mu(\emptyset\cap C) = 0$,
+%    it remains to prove that $\mu_C$ is countably additive.
+%    
+%    Let $\{B_n\}_{n=1}^\infty \subseteq \mathcal{A}_C$ be a pairwise
+%    disjoint sequence. Let $B = \bigcup_n B_n$. Then $B_n = C\cap A_n$ for some $A_n \in \mathcal{A}$.
+%    Then $\mu_C(B_n) = \mu(C_1\cap A_n)$. 
+%    
+%    Now $\mu_C(B) = \mu(\bigcup (C_1\cap A_n))$.
+    
+\end{proof}
 
 
 
