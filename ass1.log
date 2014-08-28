@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.8.2)  28 AUG 2014 12:43
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.8.2)  28 AUG 2014 16:04
 entering extended mode
  %&-line parsing enabled.
 **ass1.tex
@@ -331,16 +331,24 @@ _[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10
 
  []
 
-[4] [5] [6] [7] (./ass1.aux)
+[4] [5] [6]
+
+LaTeX Warning: Reference `almostDisjointSequence' on page 7 undefined on input 
+line 401.
+
+[7] (./ass1.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 2885 strings out of 494818
- 37007 string characters out of 1178667
+ 2886 strings out of 494818
+ 37031 string characters out of 1178667
  99635 words of memory out of 3000000
- 6016 multiletter control sequences out of 15000+50000
+ 6017 multiletter control sequences out of 15000+50000
  9059 words of font info for 34 fonts, out of 3000000 for 9000
  212 hyphenation exceptions out of 8191
  48i,11n,45p,258b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -359,7 +367,7 @@ s/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.p
 fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
 are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-t
 exlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ass1.pdf (8 pages, 450702 bytes).
+Output written on ass1.pdf (8 pages, 453727 bytes).
 PDF statistics:
  99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

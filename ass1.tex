@@ -332,6 +332,49 @@ by $\mu_C(A\cap C) = \mu(A\cap C_1)$,
 \end{proof}
 
 \subsection*{(d)}
+
+\begin{lemma}
+\label{almostDisjointSequence}
+    Suppose $(X,\mathcal{A},\mu)$ is now any measure space,
+    and $\{A_n\}_{n=1}^\infty \subseteq \mathcal{A}$ is a sequence
+    with $\mu(A_n\cap A_m) = 0$ for $n\neq m$. Then 
+    \begin{equation*}
+        \mu\left(\bigcup_{n=1}^\infty A_n\right) = \sum_{n=1}^\infty \mu(A_n).
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    We disjointify the sequence. Recursively define the sequence $\{B_n\}_{n=1}^\infty$
+    by
+    \begin{align*}
+        B_1 &= A_1\\
+        B_n &= A_n\setminus \left(\bigcup_{k=1}^{n-1} A_k\right), n>1.
+    \end{align*}
+    Then we have
+    \begin{equation*}
+        \bigcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty A_n.
+    \end{equation*}
+    And if $n > m$, $B_n\cap B_m = \emptyset$.
+    
+    Hence,
+    \begin{equation*}
+        \mu\left(\bigcup_{n=1}^\infty B_n\right) = \sum_{n=1}^\infty \mu(B_n).
+    \end{equation*}
+    
+    Note that, 
+    \begin{align*}
+        \mu(A_n) &= \mu(B_n) + \mu(A_n\cap\bigcup_{k=1}^{n-1})\\
+        &= \mu(B_n) + \mu(\bigcup_{k=1}^{n-1} A_n\cap A_k).
+    \end{align*}
+    
+    But
+    \begin{equation*}
+        \mu(\bigcup_{k=1}^{n-1} A_n\cap A_k) \leq \sum_{k=1}^{n-1} \mu(A_n\cap A_k) = 0.
+    \end{equation*}
+    
+    Hence $\mu(A_n) = \mu(B_n)$ so the result follows.  
+    
+\end{proof}
+
 \begin{corollary}
     $\mu_C$ is a measure on $A_C$.
 \end{corollary}
@@ -340,11 +383,28 @@ by $\mu_C(A\cap C) = \mu(A\cap C_1)$,
     to $\mathcal{A}_C$. It is therefore sufficient
     to prove that $\mu^*$ is countably additive on $\mathcal{A}_C$. 
     
-    Let $B_1, B_2 \in \mathcal{A}_C$ with $B_1\cap B_2 = \emptyset$. Then $B_1 = A_1\cap C$ and $B_2 = A_2\cap C$
-    for some $A_1,A_2 \in \mathcal{A}$.
+    Let $\{B_n\}_{n=1}^\infty$ be a sequence of pairwise disjoint sets
+    in $\mathcal{A}_C$. Let $B = \bigcup_n B_n$. Let $A_n \in \mathcal{A}$
+    be such that $B_n = C\cap A_n$.
     
-    Then $\mu^*(B_1\cup B_2) \leq 
-
+    Then,
+    \begin{align*}
+        \mu_C(B) &= \mu(C_1\cap\bigcup_{n=1}^\infty A_n)\\
+        &= \mu(\bigcup_{n=1}^\infty C_1\cap A_n).
+    \end{align*}
+    The sets $\{C_1\cap A_n\}$ are not necessarily pairwise disjoint, however
+    we may say that
+    \begin{equation*}
+        \mu(C_1\cap A_n \cap C_1\cap A_m) = 0
+    \end{equation*}
+    unless $n = m$.
+    So by lemma \ref{almostDisjointSequence}, 
+    \begin{equation*}
+        \mu_C(B) = \sum_{n=1}^\infty \mu_C(B_n).
+    \end{equation*}
+    
+    Hence $\mu_C$ is a measure.
+    
 %    Since we have $\mu_C(\emptyset) = \mu(\emptyset\cap C) = 0$,
 %    it remains to prove that $\mu_C$ is countably additive.
 %    
