@@ -15,6 +15,7 @@
 
 \newcommand{\Bor}{\mathcal{B}}
 \newcommand{\sdiff}{\bigtriangleup}
+\newcommand{\Expect}{{\rm I\kern-.3em E}}
 
 \unswtitle{}
 
@@ -191,6 +192,221 @@ on a measurable space $(\Omega,\mathcal{F})$.
     \end{equation*}
     Thus $\mu \ll \nu$. 
 \end{proof}
+
+\section*{Question 3}
+For this question, $X$ is a $d$-dimensional random vector with law
+$\mu$ and characteristic function $\hat{\mu}(u)$.
+\begin{lemma}
+    The characteristic function of $cX$ is $\hat{\mu}(cu)$,
+    for any $c \in \Rl$.
+\end{lemma} 
+\begin{proof}
+    This is a simple computation. By definition, the characteristic
+    function of $cX$ is
+    \begin{equation*}
+        \Expect(e^{i\langle u,cX\rangle}
+    \end{equation*}
+    But since $\langle u,cX\rangle = \langle cu,X\rangle$, this is simply
+    $\hat{\mu}(cu)$.
+\end{proof}
+
+\begin{theorem}
+    If $X$ has moments up to order $n$, then $\hat{\mu}$ is differentiable
+    at $0$ up to $n$th order, and $\frac{\partial^\alpha}{\partial u^\alpha}\hat{\mu}(u)|_{u=0} = i^{|\alpha|}\Expect(X^\alpha)$ for multi-indices $\alpha$, with
+    $|\alpha| \leq n$.
+\end{theorem}
+\begin{proof}
+    
+    Suppose that $X$ has moments up to order $n$. Then we can say that,
+    \begin{equation*}
+        \frac{\partial}{\partial u_j} \Expect(e^{i\langle u,X\rangle}) = i\Expect(X_je^{i\langle u,X\rangle})
+    \end{equation*}
+    by the Dominated convergence theorem, since $\Expect(|X_j|) < \infty$. Hence,
+    by induction,
+    \begin{equation*}
+        \frac{\partial^\alpha}{\partial u^\alpha}\Expect(e^{i\langle u,X\rangle}) = i^{|\alpha|} \Expect(X^\alpha e^{i\langle u,X\rangle}).
+    \end{equation*}
+    for all multi-indices $\alpha$ with $|\alpha| \leq n$ by the Dominated
+    convergence theorem. This shows that the derivative exists.
+    
+    So we simply evaluate this at zero to obtain the required result.
+\end{proof}    
+Now we let $X$ be a random variable with Lebesgue density
+\begin{equation*}
+    f(x) = \frac{C}{(1+x^2)\log(e+x^2)}
+\end{equation*}
+for some normalising constant $C > 0$. Let $\hat{\mu}$ be the
+characteristic function of $X$.
+
+\begin{lemma}
+    $\Expect(X)$ is not defined. That is, $X$ does not have moments up
+    to order $1$.
+\end{lemma}
+\begin{proof}
+    We have
+    \begin{equation*}
+        \frac{C}{(1+x^2)\log(e+x^2)}\leq \frac{C}{1+x^2}.
+    \end{equation*}
+    But the integral
+    \begin{equation*}
+        \int_{[0,\infty)} \frac{x}{1+x^2}\;d\lambda(x)
+    \end{equation*}
+    where $\lambda$ is Lebesgue measure is infinite, since
+    $x/(1+x^2)$ has antiderivative $(1/2)\log(1+x^2)$, which is an unbounded function.
+    Hence,
+    \begin{equation*}
+        \int_{[0,\infty)} \frac{Cx}{(1+x^2)\log(e+x^2)}\;d\lambda(x)
+    \end{equation*}
+    is infinite, so $\Expect(X)$ is not defined.
+\end{proof}
+    
+\begin{lemma}
+    $\hat{\mu}$ is differentiable at $0$.
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+\section*{Question 4}
+For this question, $\mu$ is the binomial distribution $\mathrm{Bin}(n,p)$,
+and $\nu$ is the Poisson distribution with mean $\lambda > 0$.
+
+\begin{lemma}
+    The characteristic function of a Bernoulli random variable
+    with probability $p$ is
+    \begin{equation*}
+        1-p+pe^{iu}
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    This is a simple computation, if $X$ takes the value $1$ with probability
+    $p$ and $0$ with probability $1-p$, then
+    \begin{equation*}
+        \Expect(e^{iuX}) = 1-p+pe^{iu}.
+    \end{equation*}
+\end{proof}
+\begin{lemma}
+    $\hat{\mu}(u) = (1-p+pe^{iu})^n$.
+\end{lemma}
+\begin{proof}
+    A sum of $n$ independent Bernoulli random variables with
+    probability $p$ is $\mathrm{Bin}(n,p)$ distributed. So,
+    \begin{equation*}
+        {\mu} = {\mathrm{Bern}(p)}^{\star n}
+    \end{equation*}
+    
+    Hence,
+    \begin{equation*}
+        \hat{\mu}(u) = (1-p+pe^{iu})^n.
+    \end{equation*}
+\end{proof}
+
+
+
+\begin{lemma}
+    $\hat{\nu}(u) = \exp(\lambda(e^{iu}-1))$.
+\end{lemma}
+\begin{proof}
+    We can compute,
+    \begin{equation*}
+        \hat{\nu}(u) = \sum_{k=0}^\infty \frac{e^{iuk}e^{-\lambda}\lambda^k}{k!}
+    \end{equation*}
+    So we write this as,
+    \begin{align*}
+        \hat{\nu}(u) &= \sum_{k=0}^\infty e^{-\lambda} \frac{(e^{iu}\lambda)^k}{k!}\\
+        &= e^{-\lambda} \exp(\lambda e^{iu})\\
+        &= \exp(\lambda(e^{iu}-1)).
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+\label{stuart}
+    Suppose that $q_n \rightarrow \lambda \in \Cplx$ is a sequence of complex
+    numbers. Then
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \left(1+\frac{q_n}{n}\right)^n = e^{\lambda}
+    \end{equation*} 
+\end{lemma}
+\begin{proof}
+    Fix $n$ large enough such that $|q_n|/n < 1/2$.
+    
+    Since $q_n$ is a convergent sequence, it is bounded. Let $M$
+    be large enough such that $|q_n| < M$ for all $n$.
+    
+    Re-write $\left(1+\frac{q_n}{n}\right)^n$ as $\exp(n\Log(1+\frac{q_n}{n}))$.
+    
+    The branch of the logarithm taken here is complex differentiable
+    in the set $\Cplx\setminus(-\infty,0]$. Since $|q_n|/n < 1$, the above is valid.
+    
+    So it is sufficient to show that,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} n\Log\left(1+\frac{q_n}{n}\right) = \lambda
+    \end{equation*}
+    
+    The $z\mapsto \Log(1+z)$ function is complex differentiable in the unit disc,
+    and has a power series representation 
+    \begin{equation*}
+        \Log(1+z) = \sum_{k=1}^\infty (-1)^{k-1}\frac{z^k}{k}
+    \end{equation*}
+    which converges uniformly on compact subsets of the open unit disc $\{z\in \Cplx\;:\;|z| < 1\}$.
+    
+    Now, since $|q_n|/n < 1$, we have
+    \begin{equation*}
+        n\Log(1+\frac{q_n}{n}) = q_n+\sum_{k=2}^\infty (-1}^{k-1}\frac{q_n^k}{kn^{k-1}}
+    \end{equation*}
+    
+    Now we consider the tail of the left hand side, let
+    \begin{equation*}
+        L_n := \sum_{k=2}^\infty (-1)^{k-1} \frac{q_n^k}{kn^{k-1}}
+    \end{equation*}
+    
+    By the triangle inequality,
+    \begin{equation*}
+        |L_n| \leq \sum_{k=2}^\infty \frac{M^k}{kn^{k-1}}
+    \end{equation*}
+    Thus,
+    \begin{align*}
+        |L_n| &\leq M\sum_{k=1}^\infty \left(\frac{M}{n}\right)^k\\
+        &= M\frac{M/n}{(1-M/n)}
+    \end{align*}
+    Hence, $L_n\rightarrow 0$ as $n\rightarrow\infty$.
+    Thus, the limit
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} n\Log(1+\frac{q_n}{n})
+    \end{equation*}
+    exists, and equals $\lim_{n\rightarrow\infty}q_n = \lambda$.
+    
+    Hence, the limit
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\left(1+\frac{q_n}{n}\right)^n
+    \end{equation*}
+    exists, and equals $e^\lambda$.
+\end{proof}
+
+Now we let $\{p_n\}_{n=1}^\infty$ be a monotone decreasing sequence, such
+that $np_n \rightarrow \lambda$. We let $\mu_n = \mathrm{Bin}(n,p_n)$.
+\begin{theorem}
+    There is weak convergence, $\mu_n\rightarrow\nu$.
+\end{theorem}
+\begin{proof}
+    By L\'evy's continuity theorem, it is sufficient to show pointwise convergence
+    of characteristic functions, $\hat{\mu}_n(u)\rightarrow \hat{\nu}(u)$
+    for all $u$. That is, we must show
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} (1-p_n+p_ne^{iu})^n = \exp(\lambda(e^{iu}-1)).
+    \end{equation*}    
+    
+    Rewrite $\hat{\mu}_n(u)$ as
+    \begin{equation*}
+        \left(1+\frac{np_n(e^{iu}-1)}{n}\right)^n
+    \end{equation*}
+    Now by lemma \ref{stuart}, we see
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \hat{\mu}_n(u) = \exp(\lambda(e^{iu}-1)).
+    \end{equation*}
+    Thus the result follows.
+\end{proof}
+
 
 
 \end{document}
