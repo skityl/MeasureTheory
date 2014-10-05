@@ -16,6 +16,9 @@
 \newcommand{\Bor}{\mathcal{B}}
 \newcommand{\sdiff}{\bigtriangleup}
 \newcommand{\Expect}{{\rm I\kern-.3em E}}
+\newcommand{\Prob}{{\rm I\kern-.3em P}}
+\newcommand{\Log}{\operatorname{Log}}
+
 
 \unswtitle{}
 
@@ -352,7 +355,7 @@ and $\nu$ is the Poisson distribution with mean $\lambda > 0$.
     
     Now, since $|q_n|/n < 1$, we have
     \begin{equation*}
-        n\Log(1+\frac{q_n}{n}) = q_n+\sum_{k=2}^\infty (-1}^{k-1}\frac{q_n^k}{kn^{k-1}}
+        n\Log(1+\frac{q_n}{n}) = q_n+\sum_{k=2}^\infty (-1)^{k-1}\frac{q_n^k}{kn^{k-1}}
     \end{equation*}
     
     Now we consider the tail of the left hand side, let
@@ -407,6 +410,186 @@ that $np_n \rightarrow \lambda$. We let $\mu_n = \mathrm{Bin}(n,p_n)$.
     Thus the result follows.
 \end{proof}
 
+\begin{theorem}
+    For $k \in \Ntrl$, we have the pointwise convergence
+    \begin{equation*}
+        \mu_n(\{k\})\rightarrow \nu(\{k\}).
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $F_n(x) = \mu_n(-\infty,x]$ be the cumulative
+    distribution function of $\mu_n$, and $G(x) = \nu(-\infty,x]$
+    
+    Weak convergence implies that $F_n(x)\rightarrow G(x)$
+    at all points of continuity $x$. $\mu_n$
+    and $\nu$ are discrete, so the points of continuity are
+    $\Rl\setminus \Ntrl$. 
+    
+    Now let $k \in \Ntrl$. Then
+    \begin{align*}
+        \lim_{n\rightarrow\infty} \mu_n\{k\} &= \lim_{n\rightarrow\infty} F_n(k+1/2)-F_n(k-1/2)\\
+        &= G(k+1/2)-G(k-1/2)\\
+        &= \nu\{k\}.
+    \end{align*}
+\end{proof}
 
+\section*{Question 5}
+Now we let $(\Omega,\mathcal{F},\Prob) = ([0,1],\Bor([0,1]),\lambda)$
+where $\lambda$ is Lebesgue measure.
+
+For $\omega \in [0,1]$, we let $d_n(\omega)$ be the $n$ binary digit
+of $\omega$, where we take the binary expansion containing infinitely many ones.
+Let 
+\begin{equation*}
+    B_n = \{\omega \in [0,1]\;:\;d_n(\omega) = 0\}.
+\end{equation*}
+
+\begin{lemma}
+    $\Prob(B_n) = 1/2.$
+\end{lemma}
+\begin{proof}
+    See that,
+    \begin{equation*}
+        B_n = \bigcup_{k=0}^{2^{n-1}}k/2^{n-1}+[0,2^{-n}]
+    \end{equation*}
+    So $B_n \in \Bor([0,1])$.
+
+
+    See that $B_n^c = \{\omega \in [0,1]\;:\;d_n(\omega) = 1\}$.
+    
+    So that $B_n^c = B_n+2^{-n}$. Since Lebesgue measure
+    is translation invariant, we have $\Prob(B_n^c) = \Prob(B_n)$.
+    Since $\Prob(\Omega) = \Prob(B_n)+\Prob(B_n^c) = 1$,
+    we have $\Prob(B_n) = 1/2$.
+\end{proof}
+
+\begin{lemma}
+    The events $\{B_n\}_{n=1}^\infty$ form an infinite sequence of independent
+    events.
+\end{lemma}
+\begin{proof}
+    Suppose we have some finite subset, $\{B_{n(k)}\}_{k=1}^m$. Then let
+    \begin{equation*}
+        B = \bigcap_{k=1}^m B_{n(k)}
+    \end{equation*}
+    We may choose the subset $\{n(k)\}_{k=1}^m$ so be an increasing
+    set of numbers.
+    See that,
+    \begin{equation*}
+        B = \bigcup_{}
+    \end{equation*}
+\end{proof}
+
+\begin{remark}
+    Precisely the same arguments would work if we replaced
+    binary digits with decimal digits.
+\end{remark}
+
+\begin{theorem}
+    Given any finite sequence of digits, the probability that a
+    randomly sampled number in $[0,1]$
+    contained that sequence infinitely many times is $1$.
+\end{theorem}
+\begin{proof}
+    Suppose that the sequence has length $L$. Let $E_n$
+    be the event that the sequence occurs in
+    the $nL$th position. Then the $E_n$ form an independent sequence
+    of independent events, each with probability $10^{-L}$. Then since
+    \begin{equation*}
+        \sum_{n=1}^\infty \Prob(E_n) = \infty.
+    \end{equation*}
+    Hence, by the Borel-Cantelli lemma, the probability that infinitely
+    many of the $E_n$ occur is $1$.
+\end{proof}
+
+\section*{Question*}
+
+\begin{lemma}
+\label{firstFunctional}
+    Let $s$ be a continuous solution to the functional equation
+    \begin{equation*}
+        4s(2x) = 3s(x)+s(-x).
+    \end{equation*}
+    for $x$ in a neighbourhood of $0$.
+    Then $s$ is constant.
+\end{lemma}
+\begin{proof}
+    For any constant $c$, if $s$ is a solution to the functional
+    equation then so is $s+c$. So we may assume without loss
+    of generality that $s(0) = 0$.
+    
+    Suppose $s(x) > \varepsilon > 0$. Then 
+    \begin{equation*}
+        3s(x/2)+s(-x/2) > 4\varepsilon. 
+    \end{equation*}
+    Hence since the average of $(s(x/2),s(x/2),s(x/2),s(-x/2))$
+    is larger than $\varepsilon$, at least one of these numbers
+    must exceed $\varepsilon$
+    Hence at least one of $s(x/2),s(-x/2)$ exceeds varepsilon. 
+    
+    Thus we have a sequence of numbers approaching $0$ which all
+    exceeds $\varepsilon$. But this contradicts $s(0) = 0$
+    and continuity.
+\end{proof}
+
+\begin{lemma}
+\label{secondFunctional}
+    Suppose that $f$ is a solution of
+    the functional equation
+    \begin{equation*}
+        f(2x) = f(x)^3f(-x)
+    \end{equation*} 
+    for $x$ in a neighbourhood of $0$, 
+    with $f(0) = 1$, and $f$ is assumed to be twice
+    continuously
+    differentiable in a neighbourhood of
+    the origin.
+    
+    Then $f(x) = \exp(Ax^2+Bx)$ for parameters $A$ and $B$.
+\end{lemma} 
+\begin{proof}
+    Since $f(0) = 1$, and $f$ is continuous, then we may restrict
+    $x$ sufficiently small such that $f(x) > 0$. Hence $L(x) := \log(f(x))$
+    is well defined, and
+    \begin{equation*}
+        L(2x) = 3L(x)+L(-x).
+    \end{equation*}
+    Differentiating twice, we have
+    \begin{equation*}
+        4L''(2x) = 3L''(x)+L''(-x)
+    \end{equation*}
+    But by lemma \ref{firstFunctional}, we have $L''(x)$
+    is constant. 
+    
+    Thus, $L$ is a quadratic, so $f(x) = \exp(Ax^2+Bx+C)$
+    for constants $A$,$B$ and $C$. We see $C=0$
+    since $f(0) = 1$.    
+\end{proof}
+
+\begin{theorem}
+    Suppose that $X$ and $Y$ are independent identically distributed random
+    variables, with finite variances.
+    
+    Also assume that $X+Y$ and $X-Y$ are independent.
+    
+    Then $X$ and $Y$ are Gaussian.
+\end{theorem}
+\begin{proof}
+    Let $\varphi(u)$ be the characteristic function of $X$ and $Y$.
+    Then the characteristic function of $X+Y$ is $\varphi(u)^2$,
+    and the characteristic function of $X-Y$ is $\varphi(u)\varphi(-u)$.
+    The characteristic function of $2X$ is $\varphi(2u)$. Since
+    $2X = X+Y+X-Y$, and $X+Y$ and $X-Y$ are independent, we have
+    \begin{equation*}
+        \varphi(2u) = \varphi(u)^3\varphi(-u)
+    \end{equation*}
+    and $\varphi(0) = 1$. Since $X$ and $Y$
+    have finite variances, $\varphi$ is twice continuously
+    differentiable in a neighbourhood of $0$. Thus,
+    by lemma \ref{secondFunctional} we have $\varphi(u) = \exp(Au^2+Bu)$
+    for some parameters $A$ and $B$.
+    
+    This is the characteristic function of a Gaussian random variable.
+\end{proof} 
 
 \end{document}
