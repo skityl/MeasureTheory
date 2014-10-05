@@ -1,0 +1,196 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Assignment 2}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}}
+\newcommand{\sdiff}{\bigtriangleup}
+
+\unswtitle{}
+
+
+\section*{Question 1}
+For this question, let $\mu$ and $\nu$ be probability measures
+    on $(\Rl^d,\Bor(\Rl^d))$.
+
+\begin{lemma}
+    The function $x\mapsto \nu(B-x)$ is $\Bor(\Rl^d)$
+    measurable for any $B \in \Bor(\Rl^d)$.
+\end{lemma} 
+\begin{proof}
+    Let $B \in \Bor(\Rl^d)$ and $s(x) = \nu(B-x)$. Then,
+    \begin{align*}
+        s(x) &= \int_{\Rl^d} \chi_{B-x}\;d\nu\\
+        &= \int_{\Rl^d} \chi_B(y+x)\;d\nu(y).
+    \end{align*}
+    The function $(x,y)\mapsto \chi_{B}(y+x)$
+    is a composition of a continuous function, $(x,y)\mapsto y+x$
+    and a measurable function $x\mapsto \chi_B(x)$. 
+    Hence the function $(x,y)\mapsto \chi_{B}(y+x)$
+    is $\Bor(\Rl^d)\otimes\Bor(\Rl^d)$ measurable,
+    and so by Tonelli's theorem $s$ is $\Bor(\Rl^d)$
+    measurable.
+\end{proof}
+
+\begin{lemma}
+    The convolution measure $\mu\star\nu(B) = \int_{\Rl^d} \nu(B-x)\;d\mu(x)$
+    is well defined and finite.
+\end{lemma}
+\begin{proof}
+    Since $\mu\star\nu(B)$ is defined as an integral of a positive
+    measurable function, the integral exists. Since $\nu(B-x) \leq 1$,
+    we have $\mu\star\nu(B) \leq 1$.
+\end{proof}
+
+\begin{theorem}
+    If there exists some bounded $F$
+    such that $\mu\star\nu(F) = 1$, then there are bounded
+    sets $G$ and $H$ such that $\mu(G) = 1$ and $\nu(H) = 1$.
+    Similar results hold where ``bounded" is replaced with
+    ``finite" or ``countable".
+\end{theorem}
+\begin{proof}
+    Suppose that there exists a bounded set $F \in \Bor(\Rl^d)$
+    such that $\mu\star\nu(F) = 1$, but for any bounded
+    set $B$, $\mu(B),\nu(B) < 1$. Then,
+    \begin{align*}
+        \mu\star\nu(F) &= \int \nu(F-x) \;d\mu(x)\\
+        &< \int 1\;d\mu\\
+        &= 1.
+    \end{align*}
+    since $F-x$ is bounded for any $x$. This is a contradiction.
+    Hence we must have
+    that $\nu$ attains the value $1$ on some bounded set.
+    
+    By symmetry, $\mu$ must also take the value $1$ on some bounded set.
+    
+    An identical argument holds if ``bounded" is replaced by ``finite" or
+    ``countable".
+\end{proof}
+
+\section*{Question 2}
+For this question, $\mu$ and $\nu$ are $\sigma$-finite positive measures
+on a measurable space $(\Omega,\mathcal{F})$.
+\begin{theorem}
+    The following are equivalent:
+    \begin{enumerate}
+        \item{} $\mu$ and $\nu$ have exactly the same null sets.
+        \item{} $\mu \ll \nu$ and $\nu \ll \mu$.
+        \item{} There is an $\mathcal{F}$-measurable
+        function $g$ with $0 < g < +\infty$ such that $\nu(A) = \int_A g\;d\mu$
+        for all $A \in \mathcal{F}$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    First we prove $(1)\Rightarrow(2)$.
+    
+    Assume that $\mu$ and $\nu$ have exactly the same null sets. 
+    Then if $\mu(A) = 0$, then $\nu(A) = 0$.
+    That is $\nu \ll \mu$. Similarly, $\mu \ll \nu$.
+    
+    Now we prove $(2)\Rightarrow(3)$. 
+    
+    Assume that $\nu \ll \mu$. 
+    
+    By the Radon-Nikodym Theorem,
+    there is an $\mathcal{F}$-measurable function $g$
+    such that $\nu(A) = \lambda(A)+\int_A g\;d\mu$,
+    where $\lambda$ is a measure mutually singular to $\mu$. Suppose
+    that $\mu(A) = 0$, then $\nu(A) = 0$ by assumption, hence $\lambda(A) = 0$.
+    Thus $\lambda \ll \mu$ and $\lambda \bot \mu$, so $\lambda = 0$.
+    
+    Suppose that $g = \infty$ only on a null set. Then we can modify
+    $g$ to $g = 0$ on this set since $g$ is determined only up
+    to $\mu$-almost everywhere equivalence.
+    
+    Suppose there is some set $A$ with $\mu(A) > 0$ and $g(A) = \{\infty\}$.
+    
+    Since $\nu$ is $\sigma$-finite, there exists $B$ with $\nu(B) < \infty$
+    and $\nu(A\cap B) > 0$.
+    
+    Hence $g(A\cap B) = \{\infty\}$, and we cannot have $\mu(A\cap B) = 0$
+    because then $\nu(A\cap B) = 0$.
+    
+    But then $\nu(A\cap B) = \infty$, but this is a contradiction.
+    Hence $g < \infty$ $\mu$-almost everywhere.
+    
+    Now suppose there is some set $C$ with $\mu(C) > 0$
+    and $g(C) = \{0\}$. Hence $\nu(C) = 0$, but since $\mu \ll \nu$
+    this is a contradiction.
+    
+    Now we prove that $(3)\Rightarrow(1)$.
+    
+    Suppose that $\mu(A) = 0$. Then clearly since $\nu(A) = \int_A g\;d\mu(A)$,
+    we have $\nu(A) = 0$.
+    
+    Now suppose that $\nu(A) = 0$. Now,
+    \begin{equation*}
+        \nu(A) \geq \frac{1}{n}\mu(A\cap g^{-1}([1/n,\infty))
+    \end{equation*}
+    Hence $\mu(A\cap g^{-1}([1/n,\infty)) = 0$. But since $g > 0$, we
+    have 
+    \begin{equation*}
+        \mu(A) = \lim_{n\rightarrow\infty} \mu(A\cap g^{-1}([1/n,\infty)).
+    \end{equation*}
+    Hence $\mu(A) = 0$. Thus $\mu$ and $\nu$ have the same null 
+    sets so $(1)$ is proved.
+\end{proof}
+
+\begin{theorem}
+    Suppose that $\mu$ is a $\sigma$-finite positive measure on $(\Omega,\mathcal{F})$. Then there is a finite positive measure $\nu$
+    on $(\Omega,\mathcal{F})$ such that $\nu \ll \mu$ and $\mu \ll \nu$.
+\end{theorem}
+\begin{proof}
+    Suppose that $\{A_k\}_{k=1}^\infty$ is a disjoint sequence of sets
+    with $A = \bigcup_k A_k$ and $0 < \mu(A_k) < \infty$. This can be chosen
+    since $\mu$ is $\sigma$-finite.
+    
+    Now define,
+    \begin{equation*}
+        \nu(A) = \sum_{k=1}^\infty \frac{1}{2^k \mu(A_k)}\mu(A\cap A_k)
+    \end{equation*}
+    for $A \in \mathcal{F}$.
+    This sum converges since each term is bounded by $1/2^k$, so the sum
+    is bounded by a geometric series.
+    
+    We wish to show that $\nu$ is a probability measure
+    on $(\Omega,\mathcal{F})$ and than $\mu \ll \nu$ and $\nu \ll \mu$. 
+    
+    Note that $\nu(\Omega) = 1$ and $\nu(\emptyset) = 0$.
+    
+    Suppose that $\{B_k\}_{k=1}^\infty$ is a disjoint sequence of sets
+    in $\mathcal{F}$. Then
+    \begin{equation*}
+        \nu(\bigcup_k B_k) = \sum_{j=1}^\infty \sum_{k=1}^\infty \frac{1}{2^j \mu(A_j)}\mu(B_k\cap A_j)
+    \end{equation*}
+    Then since this is a sum of positive numbers, we can change the order
+    of summation by Tonelli's theorem,
+    \begin{equation*}
+        \nu(\bigcup_k B_k) = \sum_{k=1}^\infty \nu(B_k).
+    \end{equation*}
+    Hence $\nu$ is countably additive, so is a measure on $(\Omega,\mathcal{F})$.
+    
+    Now we wish to show that $\nu \ll \mu$. Suppose that $\mu(A) = 0$.
+    Then clearly $\mu(A_k \cap A) = 0$ for all $k$, so $\nu(A) = 0$. 
+    Thus $\nu \ll \mu$.
+    
+    Now to show that $\mu \ll \nu$, let  
+    $\nu(A) = 0$, then $\mu(A_k \cap A) = 0$ for all $k$. Hence,
+    \begin{equation*}
+        \mu(A) = \sum_{k=1}^\infty \mu(A_k\cap A) = 0.
+    \end{equation*}
+    Thus $\mu \ll \nu$. 
+\end{proof}
+
+
+\end{document}
