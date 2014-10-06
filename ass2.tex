@@ -257,15 +257,15 @@ characteristic function of $X$.
     \end{equation*}
     for $x > 2$. Thus the integral,
     \begin{equation*}
-        \int_[2,\infty) \frac{Cx}{(1+x^2)\log(e+x^2)}\;d\lambda(x)
+        \int_{[2,\infty)} \frac{Cx}{(1+x^2)\log(e+x^2)}\;d\lambda(x)
     \end{equation*}
     where $\lambda$ is Lebesgue measure, is bounded from below by
     \begin{equation*}
-        \int_[2,\infty) \frac{C}{2x\log(2x^2)}\;d\lambda(x).
+        \int_{[2,\infty)} \frac{C}{2x\log(2x^2)}\;d\lambda(x).
     \end{equation*}
     We use the change of variable $u = \sqrt{2}x$ to compute this as
     \begin{equation*}
-        \frac{C}{2}\int_[2\sqrt{2},\infty) \frac{1}{u\log(u)}\;d\lambda(u).
+        \frac{C}{2}\int_{[2\sqrt{2},\infty)} \frac{1}{u\log(u)}\;d\lambda(u).
     \end{equation*} 
     However the integrand has antiderivative $\log(\log(u))$, which is unbounded.
     Hence the integral is infinite.
@@ -596,7 +596,7 @@ Let
 
 \begin{lemma}
 \label{firstFunctional}
-    Let $s$ be a continuous solution to the functional equation
+    Let $s$ be a continuous complex valued solution to the functional equation
     \begin{equation*}
         4s(2x) = 3s(x)+s(-x).
     \end{equation*}
@@ -611,17 +611,18 @@ Let
     Suppose that $s(x) \neq 0$ for some $x \neq 0$. We may assume that $s(x) > 0$
     since if $s$ is a solution, then so is $-s$.
     
-    Suppose $s(x) > \varepsilon > 0$. Then 
+    Suppose there is $x$ such that $|s(x)| > \varepsilon > 0$. Then 
     \begin{equation*}
-        3s(x/2)+s(-x/2) > 4\varepsilon. 
+        3|s(x/2)|+|s(-x/2)| > 4\varepsilon. 
     \end{equation*}
-    Hence since the average of $(s(x/2),s(x/2),s(x/2),s(-x/2))$
+    Hence since the average of $(|s(x/2)|,|s(x/2)|,|s(x/2)|,|s(-x/2)|)$
     is larger than $\varepsilon$, at least one of these numbers
-    must exceed $\varepsilon$
-    Hence at least one of $s(x/2),s(-x/2)$ exceeds $\varepsilon$. 
+    must exceed $\varepsilon$.
     
-    Thus we have a sequence of numbers approaching $0$ which all
-    exceeds $\varepsilon$. But this contradicts $s(0) = 0$
+    Hence at least one of $|s(x/2)|,|s(-x/2)|$ exceeds $\varepsilon$. 
+    
+    Thus we have a sequence of numbers $\{x_n\}_{n=1}^\infty$ approaching $0$
+    such that $|s(x_n)| > \varepsilon$. But this contradicts $s(0) = 0$
     and continuity.
 \end{proof}
 
