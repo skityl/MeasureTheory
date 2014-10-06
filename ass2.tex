@@ -246,14 +246,104 @@ characteristic function of $X$.
     to order $1$.
 \end{lemma}
 \begin{proof}
-    Note that $\log(e+x^2) $
+    Note that
+    \begin{align*}
+        1+x^2 &\leq 2x^2\\
+        \log(e+x^2) &\leq \log(2x^2)
+    \end{align*}
+    for $x>2$, hence
+    \begin{equation*}
+        \frac{Cx}{(1+x^2)\log(e+x^2)} \geq \frac{C}{2x\log(2x^2)}
+    \end{equation*}
+    for $x > 2$. Thus the integral,
+    \begin{equation*}
+        \int_[2,\infty) \frac{Cx}{(1+x^2)\log(e+x^2)}\;d\lambda(x)
+    \end{equation*}
+    where $\lambda$ is Lebesgue measure, is bounded from below by
+    \begin{equation*}
+        \int_[2,\infty) \frac{C}{2x\log(2x^2)}\;d\lambda(x).
+    \end{equation*}
+    We use the change of variable $u = \sqrt{2}x$ to compute this as
+    \begin{equation*}
+        \frac{C}{2}\int_[2\sqrt{2},\infty) \frac{1}{u\log(u)}\;d\lambda(u).
+    \end{equation*} 
+    However the integrand has antiderivative $\log(\log(u))$, which is unbounded.
+    Hence the integral is infinite.
+    
+    Thus, the integral
+    \begin{equation*}
+        \int_\Rl \frac{Cx}{(1+x^2)\log(e+x^2)}\;d\lambda(x)
+    \end{equation*}
+    is not defined.
+    
+    So $\Expect(X)$ is not defined.
 \end{proof}
     
 \begin{lemma}
     $\hat{\mu}$ is differentiable at $0$.
 \end{lemma}
 \begin{proof}
+    By definition,
+    \begin{equation*}
+        \hat{\mu}(u) = \int_{\Rl} \frac{Ce^{iux}}{(1+x^2)\log(e+x^2)}\;d\lambda(x).
+    \end{equation*}
+    where $\lambda$ is Lebesgue measure.
     
+    Using integration by parts, we rewrite this as
+    \begin{equation*}
+        \hat{\mu}(u) = \int_{\Rl} \frac{iuCe^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right]d\lambda(x)
+    \end{equation*}
+    If we differentiate the integrand with respect to $u$, we get
+    \begin{equation*}
+        F(x) := iC\frac{e^{iux}-xue^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right].
+    \end{equation*}
+    We wish to show that this is in $L^1(\Rl,\lambda)$. Write $F(x)$
+    as
+    \begin{equation*}
+        F(x) = iC(F_1(x)+F_2(x)+F_3(x)+F_4(X)).
+    \end{equation*}
+    Where,
+    \begin{align*}
+        F_1(x) &:= \frac{2e^{iux}x\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
+        F_2(x) &:= \frac{-2x^2ue^{iux}\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
+        F_3(x) &:= \frac{2x(1+x^2)e^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}\\
+        F_4(x) &:= \frac{-2x^2(1+x^2)ue^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}
+    \end{align*}
+    So we can separately show that $F_1,F_2,F_3,F_4 \in L^1(\Rl,\lambda)$.
+    
+    First, see that
+    \begin{align*}
+        |F_1(x)| &\leq 2\frac{x}{(1+x^2)^2\log(e+x^2)}\\
+        &\leq 2\frac{x}{(1+x^2)^2}
+    \end{align*}
+    so $F_1 \in L^1(\Rl,\lambda)$.
+    
+    Now,
+    \begin{align*}
+        |F_2(x)| &\leq 2u\frac{x^2}{(1+x^2)^2\log(e+x^2)}\\
+        &\leq 2u\frac{x^2}{(1+x^2)^2}\\
+        &\leq 2u\frac{1}{1+x^2}.
+    \end{align*}
+    So $F_2 \in L^1(\Rl,\lambda)$.
+    
+    For $F_3$,
+    \begin{align*}
+        |F_3(x)| &\leq 2\frac{x}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
+        &\leq 2\frac{x}{(1+x^2)^2}
+    \end{align*}
+    So $F_3 \in L^1(\Rl,\lambda)$.
+    
+    Now $F_4$,
+    \begin{align*}
+        |F_4(x)| &\leq 2u\frac{x^2}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
+        &\leq 2u\frac{1}{e+x^2}        
+    \end{align*}
+    Hence $F_4 \in L^1(\Rl,\lambda)$.
+    
+    Thus, $F \in L^1(\Rl,\lambda)$.
+    
+    Hence, by the dominated convergence theorem, $\hat{\mu}'(u)$
+    exists, so $\hat{\mu}$ is differentiable at $0$.
 \end{proof}
 
 \section*{Question 4}
@@ -462,7 +552,7 @@ Let
 %    set of numbers.
     See that,
     \begin{equation*}
-        \bigcap_{k=2}^m B_{n(k)} = B_{n(1)}\cap\bigcap_{k=2}^m B_{n(k)}\cup B_{n(1)}^c\cap\bigcap_{k=2}^m B_{n(k)}.
+        \bigcap_{k=2}^m B_{n(k)} = \left(B_{n(1)}\cap\bigcap_{k=2}^m B_{n(k)}\right)\cup \left(B_{n(1)}^c\cap\bigcap_{k=2}^m B_{n(k)}\right).
     \end{equation*}
     
     But $B_{n(1)}^c = B_{n(1)}+2^{-n(1)}$.
@@ -474,7 +564,7 @@ Let
     
     So by induction,
     \begin{equation*}
-        \Prob\left(\bigcap_{k=2}^m B_{n(k)} \right) = 2^-m = \prod_{k=1}^m \Prob(B_{n(k)}).
+        \Prob\left(\bigcap_{k=2}^m B_{n(k)} \right) = 2^{-m} = \prod_{k=1}^m \Prob(B_{n(k)}).
     \end{equation*}
     
     Hence the sequence $\{B_n\}_{n=1}^\infty$ is independent.
@@ -518,6 +608,9 @@ Let
     equation then so is $s+c$. So we may assume without loss
     of generality that $s(0) = 0$.
     
+    Suppose that $s(x) \neq 0$ for some $x \neq 0$. We may assume that $s(x) > 0$
+    since if $s$ is a solution, then so is $-s$.
+    
     Suppose $s(x) > \varepsilon > 0$. Then 
     \begin{equation*}
         3s(x/2)+s(-x/2) > 4\varepsilon. 
@@ -525,7 +618,7 @@ Let
     Hence since the average of $(s(x/2),s(x/2),s(x/2),s(-x/2))$
     is larger than $\varepsilon$, at least one of these numbers
     must exceed $\varepsilon$
-    Hence at least one of $s(x/2),s(-x/2)$ exceeds varepsilon. 
+    Hence at least one of $s(x/2),s(-x/2)$ exceeds $\varepsilon$. 
     
     Thus we have a sequence of numbers approaching $0$ which all
     exceeds $\varepsilon$. But this contradicts $s(0) = 0$
