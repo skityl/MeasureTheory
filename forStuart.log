@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2014.10.5)  10 OCT 2014 04:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2014.10.5)  7 OCT 2014 01:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**ass2.tex
-(./ass2.tex
+**forStuart.tex
+(./forStuart.tex
 LaTeX2e <2011/06/27>
 Babel <3.9f> and hyphenation patterns for 78 languages loaded.
 (./unswmaths.cls
@@ -242,8 +242,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 \c@definition=\count106
 \c@corollary=\count107
 \c@remark=\count108
-) (./ass2.aux)
-\openout1 = `ass2.aux'.
+)
+No file forStuart.aux.
+\openout1 = `forStuart.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -257,7 +258,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -322,62 +322,51 @@ Package pdftex.def Info: artwork/mathslogo.jpg used on input line 23.
 
 {/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map} <./artwork/unswlogo.jpg> 
 <./artwork/mathslogo.jpg>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1] [2] [3] [4]
-Overfull \hbox (2.71591pt too wide) in paragraph at lines 269--272
-\OT1/cmr/m/n/10 However the in-te-grand has an-tideriva-tive $[]([](\OML/cmm/m/
-it/10 u\OT1/cmr/m/n/10 ))$, which is un-bounded. Hence
- []
+) [1]
 
-[5]
-Overfull \hbox (9.87563pt too wide) detected at line 301
-[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 ) = [][] [] \OMS/cmsy/m/n/
-10 ^^A [] [] \OML/cmm/m/it/10 d^^U\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m
-/n/10 )
- []
+LaTeX Warning: Reference `stuart' on page 2 undefined on input line 109.
+
+[2] (./forStuart.aux)
+
+LaTeX Warning: There were undefined references.
 
 
-Overfull \hbox (33.39763pt too wide) detected at line 306
-\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) := [] \O
-MS/cmsy/m/n/10 ^^A [] []
- []
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-[6] [7] [8] [9] [10] [11] [12] [13] (./ass2.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 3246 strings out of 493315
- 41720 string characters out of 6145893
- 112976 words of memory out of 5000000
- 6639 multiletter control sequences out of 15000+600000
- 8752 words of font info for 33 fonts, out of 8000000 for 9000
+ 3241 strings out of 493315
+ 41685 string characters out of 6145893
+ 111948 words of memory out of 5000000
+ 6636 multiletter control sequences out of 15000+600000
+ 8445 words of font info for 32 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,11n,45p,299b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/type1
-/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/
-share/texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public/amsfont
-s/cm/cmmi5.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
-/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf/fonts/type1/public/amsfonts
-/cm/cmr5.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
-are/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/typ
-e1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf/fonts/type1/public/amsfonts/c
-m/cmsy7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/s
-hare/texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/ams
-fonts/symbols/msbm7.pfb>
-Output written on ass2.pdf (14 pages, 470018 bytes).
+ 49i,11n,45p,304b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/public
+/amsfonts/cm/cmcsc10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmex1
+0.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
+exmf/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
+xmf/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy7
+.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/te
+xmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb>
+Output written on forStuart.pdf (3 pages, 398641 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

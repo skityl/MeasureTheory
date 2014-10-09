@@ -289,61 +289,125 @@ characteristic function of $X$.
     \end{equation*}
     where $\lambda$ is Lebesgue measure.
     
-    Using integration by parts, we rewrite this as
+    Now we may write $e^{iux} = \cos(ux)+i\sin(ux)$. Since $\sin$
+    is an odd function, and the density is even, this means that
     \begin{equation*}
-        \hat{\mu}(u) = \int_{\Rl} \frac{iuCe^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right]d\lambda(x)
+        \hat{\mu}(u) = \int_{\Rl} \frac{C\cos(ux)}{(1+x^2)\log(e+x^2)}\;d\lambda(x).
     \end{equation*}
+    
+    Using integration by parts, we may rewrite this as
+    \begin{equation*}
+        \hat{\mu}(u) = \int_{\Rl} \frac{\sin(ux)}{u}\cdot\frac{C}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right]d\lambda(x)
+    \end{equation*}
+    
     If we differentiate the integrand with respect to $u$, we get
     \begin{equation*}
-        F(x) := iC\frac{e^{iux}-xue^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right].
+        F(x) := \frac{ux\cos(ux)-\sin(ux)}{u^2}\cdot \frac{C}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right]
     \end{equation*}
-    We wish to show that this is in $L^1(\Rl,\lambda)$. Write $F(x)$
-    as
+    
+    We wish to show that $F \in L^1(\Rl,\lambda)$. To simplify computations, we write
     \begin{equation*}
-        F(x) = iC(F_1(x)+F_2(x)+F_3(x)+F_4(X)).
+        F = C(F_1+F_2+F_3+F_4).
     \end{equation*}
+    
     Where,
     \begin{align*}
-        F_1(x) &:= \frac{2e^{iux}x\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
-        F_2(x) &:= \frac{-2x^2ue^{iux}\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
-        F_3(x) &:= \frac{2x(1+x^2)e^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}\\
-        F_4(x) &:= \frac{-2x^2(1+x^2)ue^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}
+        F_1(x) &:= \frac{2x^2\cos(ux)}{u(1+x^2)^2\log(e+x^2)}\\
+        F_2(x) &:= -\frac{2x\sin(ux)}{u^2(1+x^2)^2\log(e+x^2)}\\
+        F_3(x) &:= \frac{2x^2\cos(ux)}{u(1+x^2)(e+x^2)\log(x^2+e)^2}\\
+        F_4(x) &:= -\frac{2x\sin(ux)}{u^2(1+x^2)(e+x^2)\log(e+x^2)^2}.
     \end{align*}
-    So we can separately show that $F_1,F_2,F_3,F_4 \in L^1(\Rl,\lambda)$.
     
-    First, see that
-    \begin{align*}
-        |F_1(x)| &\leq 2\frac{x}{(1+x^2)^2\log(e+x^2)}\\
-        &\leq 2\frac{x}{(1+x^2)^2}
-    \end{align*}
-    so $F_1 \in L^1(\Rl,\lambda)$.
+    Now we may individually show that $F_1,F_2,F_3,F_4 \in L^1(\Rl,\lambda)$.
     
-    Now,
-    \begin{align*}
-        |F_2(x)| &\leq 2u\frac{x^2}{(1+x^2)^2\log(e+x^2)}\\
-        &\leq 2u\frac{x^2}{(1+x^2)^2}\\
-        &\leq 2u\frac{1}{1+x^2}.
-    \end{align*}
-    So $F_2 \in L^1(\Rl,\lambda)$.
+    First, for $F_1$,
+    \begin{equation*}
+        |F_1(x)| \leq \frac{2x^2+2}{|u|(1+x^2)^2} = \frac{2}{u(1+x^2)}
+    \end{equation*}
+    for $F_2$,
+    \begin{equation*}
+        |F_2(x)| \leq \frac{2x}{u^2(1+x^2)^2}
+    \end{equation*}
+    for $F_3$,
+    \begin{equation*}
+        |F_3(x)| \leq \frac{2x^2+2}{|u|(1+x^2)^2} = \frac{2}{|u|(1+x^2)}
+    \end{equation*}
+    and finally $F_4$,
+    \begin{equation*}
+        |F_4(x)| \leq \frac{2x}{u^2(1+x^2)^2}.
+    \end{equation*}
+    These bounds show that $F \in L^1(\Rl,\lambda)$.
     
-    For $F_3$,
-    \begin{align*}
-        |F_3(x)| &\leq 2\frac{x}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
-        &\leq 2\frac{x}{(1+x^2)^2}
-    \end{align*}
-    So $F_3 \in L^1(\Rl,\lambda)$.
+    Hence, we may differentiate $\hat{\mu}(u)$, and we see that
+    for $\hat{\mu}'(0)$ to exist, we must be able to compute
+    \begin{equation*}
+        \lim_{u\rightarrow 0} \int_\Rl F\;d\lambda.
+    \end{equation*}
     
-    Now $F_4$,
-    \begin{align*}
-        |F_4(x)| &\leq 2u\frac{x^2}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
-        &\leq 2u\frac{1}{e+x^2}        
-    \end{align*}
-    Hence $F_4 \in L^1(\Rl,\lambda)$.
+    However the expression
+    \begin{equation*}
+        \frac{ux\cos(ux)-\sin(ux)}{u^2}
+    \end{equation*}
+    is bounded as $u\rightarrow 0$, and the limit as
+    $u\rightarrow 0$ of this expression is $0$.
     
-    Thus, $F \in L^1(\Rl,\lambda)$.
+    This shows that $\hat{\mu}$ is differentiable at $0$
     
-    Hence, by the dominated convergence theorem, $\hat{\mu}'(u)$
-    exists, so $\hat{\mu}$ is differentiable at $0$.
+%    Using integration by parts, we rewrite this as
+%    \begin{equation*}
+%        \hat{\mu}(u) = \int_{\Rl} \frac{iuCe^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right]d\lambda(x)
+%    \end{equation*}
+%    If we differentiate the integrand with respect to $u$, we get
+%    \begin{equation*}
+%        F(x) := iC\frac{e^{iux}-xue^{iux}}{[(1+x^2)\log(e+x^2)]^2}\left[2x\log(e+x^2)+(1+x^2)\frac{2x}{e+x^2}\right].
+%    \end{equation*}
+%    We wish to show that this is in $L^1(\Rl,\lambda)$. Write $F(x)$
+%    as
+%    \begin{equation*}
+%        F(x) = iC(F_1(x)+F_2(x)+F_3(x)+F_4(X)).
+%    \end{equation*}
+%    Where,
+%    \begin{align*}
+%        F_1(x) &:= \frac{2e^{iux}x\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
+%        F_2(x) &:= \frac{-2x^2ue^{iux}\log(e+x^2)}{[(1+x^2)\log(e+x^2)]^2}\\
+%        F_3(x) &:= \frac{2x(1+x^2)e^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}\\
+%        F_4(x) &:= \frac{-2x^2(1+x^2)ue^{iux}}{(e+x^2)[(1+x^2)\log(e+x^2)]^2}
+%    \end{align*}
+%    So we can separately show that $F_1,F_2,F_3,F_4 \in L^1(\Rl,\lambda)$.
+%    
+%    First, see that
+%    \begin{align*}
+%        |F_1(x)| &\leq 2\frac{x}{(1+x^2)^2\log(e+x^2)}\\
+%        &\leq 2\frac{x}{(1+x^2)^2}
+%    \end{align*}
+%    so $F_1 \in L^1(\Rl,\lambda)$.
+%    
+%    Now,
+%    \begin{align*}
+%        |F_2(x)| &\leq 2u\frac{x^2}{(1+x^2)^2\log(e+x^2)}\\
+%        &\leq 2u\frac{x^2}{(1+x^2)^2}\\
+%        &\leq 2u\frac{1}{1+x^2}.
+%    \end{align*}
+%    So $F_2 \in L^1(\Rl,\lambda)$.
+%    
+%    For $F_3$,
+%    \begin{align*}
+%        |F_3(x)| &\leq 2\frac{x}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
+%        &\leq 2\frac{x}{(1+x^2)^2}
+%    \end{align*}
+%    So $F_3 \in L^1(\Rl,\lambda)$.
+    
+%    Now $F_4$,
+%    \begin{align*}
+%        |F_4(x)| &\leq 2u\frac{x^2}{(e+x^2)(1+x^2)\log(e+x^2)^2}\\
+%        &\leq 2u\frac{1}{e+x^2}        
+%    \end{align*}
+%    Hence $F_4 \in L^1(\Rl,\lambda)$.
+%    
+%    Thus, $F \in L^1(\Rl,\lambda)$.
+%    
+%    Hence, by the dominated convergence theorem, $\hat{\mu}'(u)$
+%    exists, so $\hat{\mu}$ is differentiable at $0$.
 \end{proof}
 
 \section*{Question 4}

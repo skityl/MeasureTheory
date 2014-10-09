@@ -1,0 +1,117 @@
+\documentclass{unswmaths}
+
+\usepackage{unswshortcuts}
+
+\begin{document}
+
+\subject{Measure Theory}
+\author{Edward McDonald}
+\title{Present for Stuart}
+\studentno{3375335}
+
+
+\setlength\parindent{0pt}
+
+
+\newcommand{\Bor}{\mathcal{B}}
+\newcommand{\sdiff}{\bigtriangleup}
+\newcommand{\Expect}{{\rm I\kern-.3em E}}
+\newcommand{\Prob}{{\rm I\kern-.3em P}}
+\newcommand{\Log}{\operatorname{Log}}
+
+
+\unswtitle{}
+
+
+
+
+\begin{lemma}
+\label{stuart}
+    Suppose that $q_n \rightarrow \lambda \in \Cplx$ is a sequence of complex
+    numbers. Then
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \left(1+\frac{q_n}{n}\right)^n = e^{\lambda}
+    \end{equation*} 
+\end{lemma}
+\begin{proof}
+    Fix $n$ large enough such that $|q_n|/n < 1/2$.
+    
+    Since $q_n$ is a convergent sequence, it is bounded. Let $M$
+    be large enough such that $|q_n| < M$ for all $n$.
+    
+    Re-write $\left(1+\frac{q_n}{n}\right)^n$ as $\exp(n\Log(1+\frac{q_n}{n}))$.
+    
+    The branch of the logarithm taken here is complex differentiable
+    in the set $\Cplx\setminus(-\infty,0]$. Since $|q_n|/n < 1$, the above is valid.
+    
+    So it is sufficient to show that,
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} n\Log\left(1+\frac{q_n}{n}\right) = \lambda
+    \end{equation*}
+    
+    The $z\mapsto \Log(1+z)$ function is complex differentiable in the unit disc,
+    and has a power series representation 
+    \begin{equation*}
+        \Log(1+z) = \sum_{k=1}^\infty (-1)^{k-1}\frac{z^k}{k}
+    \end{equation*}
+    which converges uniformly on compact subsets of the open unit disc $\{z\in \Cplx\;:\;|z| < 1\}$.
+    
+    Now, since $|q_n|/n < 1$, we have
+    \begin{equation*}
+        n\Log(1+\frac{q_n}{n}) = q_n+\sum_{k=2}^\infty (-1)^{k-1}\frac{q_n^k}{kn^{k-1}}
+    \end{equation*}
+    
+    Now we consider the tail of the left hand side, let
+    \begin{equation*}
+        L_n := \sum_{k=2}^\infty (-1)^{k-1} \frac{q_n^k}{kn^{k-1}}
+    \end{equation*}
+    
+    By the triangle inequality,
+    \begin{equation*}
+        |L_n| \leq \sum_{k=2}^\infty \frac{M^k}{kn^{k-1}}
+    \end{equation*}
+    Thus,
+    \begin{align*}
+        |L_n| &\leq M\sum_{k=1}^\infty \left(\frac{M}{n}\right)^k\\
+        &= M\frac{M/n}{(1-M/n)}
+    \end{align*}
+    Hence, $L_n\rightarrow 0$ as $n\rightarrow\infty$.
+    Thus, the limit
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} n\Log(1+\frac{q_n}{n})
+    \end{equation*}
+    exists, and equals $\lim_{n\rightarrow\infty}q_n = \lambda$.
+    
+    Hence, the limit
+    \begin{equation*}
+        \lim_{n\rightarrow\infty}\left(1+\frac{q_n}{n}\right)^n
+    \end{equation*}
+    exists, and equals $e^\lambda$.
+\end{proof}
+
+Now we let $\{p_n\}_{n=1}^\infty$ be a monotone decreasing sequence, such
+that $np_n \rightarrow \lambda$. We let $\mu_n = \mathrm{Bin}(n,p_n)$.
+\begin{theorem}
+    There is weak convergence, $\mu_n\rightarrow\nu$.
+\end{theorem}
+\begin{proof}
+    By L\'evy's continuity theorem, it is sufficient to show pointwise convergence
+    of characteristic functions, $\hat{\mu}_n(u)\rightarrow \hat{\nu}(u)$
+    for all $u$. That is, we must show
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} (1-p_n+p_ne^{iu})^n = \exp(\lambda(e^{iu}-1)).
+    \end{equation*}    
+    
+    Rewrite $\hat{\mu}_n(u)$ as
+    \begin{equation*}
+        \left(1+\frac{np_n(e^{iu}-1)}{n}\right)^n
+    \end{equation*}
+    Now by lemma \ref{stuart}, we see
+    \begin{equation*}
+        \lim_{n\rightarrow\infty} \hat{\mu}_n(u) = \exp(\lambda(e^{iu}-1)).
+    \end{equation*}
+    Thus the result follows.
+\end{proof}
+
+
+\end{document}
